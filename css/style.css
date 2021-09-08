@@ -1,7 +1,26 @@
-.accordion {
+.navbar{
+    background-color: #fff;
+    border-bottom: 0.05rem solid rgba(0,0,0,.125);
+}
+.navbar-logo {
+    margin-left: 2rem;
+}
+.dropdown-user{
+    margin-right: 2rem;
+}
+.dropdown-menu{
+    right: -1rem;
+    top: 3rem;
+}
+.accordion-leftMenu {
     max-width: 15rem;
     height: 100vh;
-    border-right: 0.1rem solid #f5f5f5;
+    border-right: 0.05rem solid rgba(0,0,0,.125);
+}
+.accordion-button:focus {
+    border-color: transparent !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
 }
 .list-group__item{
     list-style-type: none;
@@ -18,7 +37,7 @@
 
 .accordion-button:not(.collapsed){
     color: #3a3737 !important;
-    background-color: #e7f1ff !important;
+    background-color: transparent !important;
 }
 
 main.main {
@@ -28,11 +47,94 @@ main.main {
 .main-content{
     background-color: #f5f5f5;
     padding-left: 4rem;
+    padding-top: 2rem;
+}
+.nav-tabs{
+    border: none !important;
+}
+.nav-link{
+    color: #6e6e6e !important;
 }
 .tabs{
-    max-width: 70%;
+    max-width: 90%;
 }
 .tab-content{
     background-color: #fff;
     width: 100%;
+}
+.card{
+    border: none !important;
+    padding: 1rem 2rem;
+}
+input:focus, select:focus{
+    border-color: #d9dce0 !important;
+    box-shadow: 0 0 0 0.1rem rgb(95 96 97 / 25%) !important;
+}
+.card-system__title{
+    font-size: 1rem;
+    color: #a29c9c;
+    margin-bottom: 1rem;
+}
+.card-system__form-api__btn-dis,
+.card-system__form-api__btn-random{
+    border: 0.05rem solid #f5f5f5;
+    background-color: #fff;
+    border-radius: .5rem;
+    padding: 0 .9rem;
+}
+img.btn-dis__icon,
+img.btn-random__icon {
+    display: block;
+    width: 1rem;
+}
+.card-system__form-phones{
+    display: flex;
+    flex-direction: column;
+}
+label{
+    font-weight: 500;
+    font-size: .894rem;
+    color: #484a4c;
+}
+.nav-item{
+    margin-bottom: -0.08rem;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    border: none !important;
+}
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover{
+    border-color: transparent !important;
+}
+
+.nav-link:focus, .nav-link:hover{
+    color: #3a3737 !important;
+}
+.bootstrap-tagsinput .tag {
+    color: #211f1f !important;
+    font-size: .9rem;
+    border: .05rem solid #cebfbf;
+    background-color: #cebfbf;
+    border-radius: .3rem;
+}
+.timetable__interval{
+    display: flex;
+}
+.btn-addTime{
+    border: 0.05rem solid #cebfbf;
+    border-radius: .5rem;
+    background-color: #fff;
+}
+img.btn-addTime-icon{
+    display: block;
+    width: 1rem;
+}
+.btn-save__container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.addTime{
+    display: none;
 }

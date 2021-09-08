@@ -11,11 +11,12 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="./js/plugins/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.css">
 </head>
 
 <body>
     <header class="header">
-        <nav class="navbar navbar-light bg-light">
+        <nav class="navbar navbar-light ">
             <div class="navbar-logo">
                 <a class="navbar-brand">Somebody Logo</a>
             </div>
@@ -33,7 +34,8 @@
         </nav>
     </header>
     <main class="main">
-        <div class="accordion accordion-flush" id="accordionFlushExample">
+
+        <div class="accordion accordion-leftMenu accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -127,66 +129,255 @@
 
         <div class="main-content">
 
+            <div class="breadcrumbs">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Настройки</a></li>
+                        <li class="breadcrumb-item"><a href="#">Филиалы</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Филиал-1</li>
+                    </ol>
+                </nav>
+            </div>
 
+
+
+            <!-- Кнопки перехода на страницы Общие, Опросы -->
             <div class="tabs">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
+                        <!-- Кнопка Общие -->
                         <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#general"
-                            type="button" role="tab" aria-controls="general" aria-selected="true">Главная</button>
+                            type="button" role="tab" aria-controls="general" aria-selected="true">
+                            Общие
+                        </button>
                     </li>
                     <li class="nav-item" role="presentation">
+                        <!-- Кнопка Опросы -->
                         <button class="nav-link" id="notice-tab" data-bs-toggle="tab" data-bs-target="#notice"
-                            type="button" role="tab" aria-controls="notice" aria-selected="false">Профиль</button>
+                            type="button" role="tab" aria-controls="notice" aria-selected="false">
+                            Опросы
+                        </button>
                     </li>
                 </ul>
+
+
+
+                <!-- Страница Общие -->
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
-                        <div class="card">
-                            <div class="card-system">
-                                <h3 class="card-system__title">
-                                    Системные
-                                </h3>
-                                <div class="card-system__form-name mb-3">
-                                    <label for="systemName"
-                                        class="card-system__form-name__label form-label">Название</label>
-                                    <input type="text" class="card-system__form-name__form form-control"
-                                        id="systemName">
+                        <form action="#" id="form" method="post" Content-Type="multipart/form-data">
+                            <div class="card">
+                                <div class="card-system">
+                                    <h3 class="card-system__title">
+                                        Системные
+                                    </h3>
+                                    <div class="card-system__form-name mb-3">
+                                        <label for="systemName"
+                                            class="card-system__form-name__label form-label">Название</label>
+                                        <input type="text" class="card-system__form-name__form form-control"
+                                            id="systemName">
+                                    </div>
+                                    <div class="card-system__form-timezone mb-3">
+                                        <label for="timezone">Часовой пояс</label>
+                                        <select id="timezone" class="form-select card-system__form-timezone__select"
+                                            aria-label="Default select example">
+                                            <option selected></option>
+                                            <option value="1">+0 - Москва</option>
+                                            <option value="2">+1 - Калининград</option>
+                                            <option value="3">+2 - Екатеринбург</option>
+                                            <option value="4">+3 - Омск</option>
+                                            <option value="5" selected>+4 - Самара</option>
+                                        </select>
+                                    </div>
+                                    <div class="card-system__form-api mb-3">
+                                        <label for="apiKey">Ключ АПИ</label>
+                                        <div class="input-group">
+                                            <input id="apiKey" class="form-control card-system__form-api__input"
+                                                type="text" placeholder="" aria-label="readonly input" disabled>
+                                            <button class="card-system__form-api__btn-dis" type="button">
+                                                <img class="btn-dis__icon" src="./images/unlock.svg" alt="unblock">
+                                            </button>
+                                            <button class="card-system__form-api__btn-random" type="button">
+                                                <img class="btn-random__icon" src="./images/magic.svg" alt="random">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-system__form-phones mb-3">
+                                        <label for="phones">Телефоны</label>
+                                        <input data-role="tagsinput" value="87839" type="text"
+                                            class="card-system__form-phones__form form-control" id="phones">
+                                    </div>
                                 </div>
-                                <div class="card-system__form-timezone mb-3">
-                                    <label for="timezone">Часовой пояс</label>
-                                    <select id="timezone" class="form-select card-system__form-timezone__select"
-                                        aria-label="Default select example">
-                                        <option selected>+4 - Самара</option>
-                                        <option value="1">+0</option>
-                                        <option value="2">+1</option>
-                                        <option value="3">+2</option>
-                                        <option value="4">+3</option>
+
+                                <!-- Расписание -->
+                                <div class="card-timetable">
+                                    <h3 class="card-timetable__title">
+                                        Расписание
+                                    </h3>
+                                    <div class="accordion accordion-timetable" id="timetable">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingOne">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseOne" aria-expanded="true"
+                                                    aria-controls="collapseOne">
+                                                    Раскрыть настройки
+                                                </button>
+                                            </h2>
+                                            <div id="collapseOne" class="accordion-collapse collapse show"
+                                                aria-labelledby="headingOne" data-bs-parent="#timetable">
+                                                <div class="accordion-body">
+                                                    <div class="timetable mb-3">
+                                                        <!-- Понедельник -->
+                                                        <div class="input-group input-group--monday">
+                                                            <input class="form-check-input form-check-input--monday"
+                                                                type="checkbox" value="" id="checkboxMonday" checked>
+                                                            <span class="span-monday">
+                                                                Понедельник
+                                                            </span>
+                                                            <label for="startTime">С</label>
+                                                            <input type="time"
+                                                                class="form-control form-control--startTime"
+                                                                id="startTime" aria-describedby="startTime">
+                                                            <label for="endTime">По</label>
+                                                            <input type="time"
+                                                                class="form-control form-control--endTime" id="endTime"
+                                                                aria-describedby="endTime">
+                                                            <button type="button" class="btn btn-primary btn-addTime btn-addTimeMonday">
+                                                                <img src="./images/clock.svg" alt="clock">
+                                                            </button>
+                                                            <div class="addTime addTimeMonday">
+                                                                <div class="input-group ">
+                                                                    <label for="startTime">С</label>
+                                                                <input type="time"
+                                                                    class="form-control form-control--startTime"
+                                                                    id="startTime" aria-describedby="startTime">
+                                                                <label for="endTime">По</label>
+                                                                <input type="time"
+                                                                    class="form-control form-control--endTime"
+                                                                    id="endTime" aria-describedby="endTime">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Вторник -->
+                                                        <div class="input-group input-group--tuesday">
+                                                            <input class="form-check-input form-check-input--tuesday"
+                                                                type="checkbox" value="" id="checkboxTuesday" checked>
+                                                            <span class="span-tuesday">
+                                                                Вторник
+                                                            </span>
+                                                            <label for="startTime">С</label>
+                                                            <input type="time"
+                                                                class="form-control form-control--startTime"
+                                                                id="startTime" aria-describedby="startTime">
+                                                            <label for="endTime">По</label>
+                                                            <input type="time"
+                                                                class="form-control form-control--endTime" id="endTime"
+                                                                aria-describedby="endTime">
+                                                            <button type="button" class="btn btn-primary btn-addTime btn-addTimeTuesday">
+                                                                <img src="./images/clock.svg" alt="clock">
+                                                            </button>
+                                                            <div class="addTime addTimeTuesday">
+                                                                <div class="input-group">
+                                                                    <label for="startTime">С</label>
+                                                                <input type="time"
+                                                                    class="form-control form-control--startTime"
+                                                                    id="startTime" aria-describedby="startTime">
+                                                                <label for="endTime">По</label>
+                                                                <input type="time"
+                                                                    class="form-control form-control--endTime"
+                                                                    id="endTime" aria-describedby="endTime">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-save__container">
+                                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <!-- Страница опросов -->
+                    <div class="tab-pane fade" id="notice" role="tabpanel" aria-labelledby="notice-tab">
+                        <div class="card">
+                            <div class="card-polls">
+                                <h3 class="card-polls__title">
+                                    Сайты
+                                </h3>
+                                <div class="mb-3">
+                                    <select multiple class="form-select form-select-lg mb-3" aria-label="select"
+                                        data-role="tagsinput">
+                                        <option value='Amsterdam'>Amsterdam</option>
                                     </select>
                                 </div>
-                                <div class="card-system__form-api mb-3">
-                                    <label for="apiKey">Ключ АПИ</label>
-                                    <input id="apiKey" class="form-control card-system__form-api__input" type="text" placeholder=""
-                                        aria-label="readonly input" disabled>
-                                    <button class="card-system__form-api__btn-dis" type="button">1</button>
-                                    <button class="card-system__form-api__btn-random" type="button">2</button>
+                                <!-- Button trigger modal -->
+                                <div class="btn-addSite__container mb-3">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#addSite">
+                                        Добавить сайт
+                                    </button>
                                 </div>
-                                
-                            </div>
-                            <div class="card-timetable">
+                                <div class="btn-save__container mb-3">
+                                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                                </div>
 
-                            </div>
-                            <div class="button-save">
-                                <button class="save-btn" type="submit"></button>
+                                <!-- Modal -->
+                                <form action="#" id="form-addSite" method="POST">
+                                    <div class="modal fade" id="addSite" tabindex="-1" aria-labelledby="addSiteLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="addSiteLabel">Добавление нового сайта</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label for="platform" class="form-label">Выберите платформу</label>
+                                                    <select name="sitePlatform" class="form-select" aria-label="selectPlatform">
+                                                        <option selected></option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="siteLink" class="form-label">Укажите ссылку</label>
+                                                    <input name="siteLink" type="text" class="form-control" id="siteLink"
+                                                        aria-describedby="siteLink">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="siteName" class="form-label">Название</label>
+                                                    <input name="siteName" type="text" class="form-control" id="siteName"
+                                                        aria-describedby="siteName">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn-addSite btn-primary">Принять</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Отмена</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="notice" role="tabpanel" aria-labelledby="notice-tab">2</div>
                 </div>
             </div>
 
         </div>
     </main>
 
+    <script src="./js/plugins/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.min.js"></script>
     <script src="./js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
         integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
