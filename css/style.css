@@ -138,3 +138,7 @@ img.btn-addTime-icon{
 .addTime{
     display: none;
 }
+
+.tab-content {
+    background-color: inherit !important;
+}
