@@ -14,7 +14,7 @@
 }
 .accordion-leftMenu {
     max-width: 15rem;
-    height: 100vh;
+    min-height: 100vh;
     border-right: 0.05rem solid rgba(0,0,0,.125);
 }
 .accordion-button:focus {
@@ -65,6 +65,10 @@ main.main {
 .card{
     border: none !important;
     padding: 1rem 2rem;
+}
+
+.card-system__form-api__btn-dis {
+    margin: 0 0.3rem !important;
 }
 input:focus, select:focus{
     border-color: #d9dce0 !important;
@@ -128,12 +132,7 @@ img.btn-addTime-icon{
     display: block;
     width: 1rem;
 }
-.btn-save__container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    align-items: center;
-}
+
 
 .addTime{
     display: none;
@@ -141,4 +140,121 @@ img.btn-addTime-icon{
 
 .tab-content {
     background-color: inherit !important;
+}
+#table{
+    width: 100% !important;
+}
+.table-content{
+    padding: 1rem;
+    background-color: #fff !important;
+}
+.contacts{
+    margin-right: 1rem;
+}
+.nav-pills{
+    background-color: #ebebeb;
+    padding: 1rem;
+    margin: 3rem 0 !important;
+    margin-right: 1rem !important;
+}
+.nav-link-settings{
+    background-color: inherit !important;
+}
+
+
+
+
+
+/* Стилизация расписания */
+.card-timetable{
+    margin-bottom: 1rem;
+}
+.input-group-day {
+    margin-bottom: .8rem;
+}
+input[type="time"]{
+    max-width: 7rem;
+}
+.input-group-day > label {
+    border: 0.1rem solid rgba(0,0,0,0.125);
+    padding: 0.3rem 0.7rem;
+    color: #908a8a;
+}   
+.input-group-extraday > label {
+    border: 0.1rem solid rgba(0,0,0,0.125);
+    padding: 0.3rem 0.7rem;
+    color: #908a8a;
+}       
+.checkbox-wrap {
+    border: 0.1rem solid rgba(0,0,0,0.125);
+    padding: 0.3rem 0.7rem;
+    border-bottom-left-radius: .5rem;
+    border-top-left-radius: .5rem;
+}
+.span-day {
+    width: 8rem !important;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: #908a8a;
+    border: 0.1rem solid rgba(0,0,0,0.125);
+}
+.form-check-input:checked{
+    background-color: #ca4054 !important;
+    border-color: #ca4054 !important;
+}
+.input-group-day > .btn-primary:focus{
+    background: transparent !important;
+    border: 0.1rem solid rgba(0,0,0,0.125) !important;
+    box-shadow: none !important;
+}
+.input-group-day > .btn-primary:hover {
+    background: transparent !important;
+    border: 0.1rem solid rgba(0,0,0,0.125) !important;
+    box-shadow: none !important;
+}
+.input-group-day > button {
+    background: transparent;
+    border: 0.1rem solid rgba(0,0,0,0.125);
+    width: 2.5em;
+}
+
+
+.btn-save__container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    
+}
+.btn-save{
+    background-color: #ca4054 !important;
+    border-color: #ca4054 !important;
+}
+.btn-save:hover{
+    background-color: #ca4054 !important;
+    border-color: #ca4054 !important;
+    color: #fff !important;
+}
+
+
+.btn-addSite__container > .btn-primary {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: #ca4054 !important;
+    font-size: 1rem !important;
+    font-weight: bold;
+    position: relative;
+    padding-left: 1.3rem;
+}
+
+.btn-addSite__container > .btn-primary::after{
+    position: absolute;
+    content: '+';
+    color: #ca4054 !important;
+    font-size: 1.5rem;
+    top: 0;
+    left: 0;
+    bottom: 0;
 }

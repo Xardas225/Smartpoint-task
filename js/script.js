@@ -11,18 +11,20 @@ $('document').ready(function () {
     });
 
     // Рандом АПИ ключа
-    $('.card-system__form-api__btn-random').on('click', function () {
-        let random = Math.random().toString(36);
-        $('#apiKey').val(random);
-    });
+    // $('.card-system__form-api__btn-random').on('click', function () {
+    //     let random = Math.random().toString(36);
+    //     $('#apiKey').val(random);
+    // });
 
     // Расписание Понедельник
     $('#checkboxMonday').on('click', function () {
         if ($(this).prop('checked')) {
             $('.input-group--monday').css('pointer-events', 'auto');
+            $('.input-group--monday').css('opacity', '1');
         } else {
             $('.input-group--monday').css('pointer-events', 'none');
             $(this).css('pointer-events', 'auto');
+            $('.input-group--monday').css('opacity', '0.5');
         }
     });
 
@@ -40,9 +42,11 @@ $('document').ready(function () {
     $('#checkboxTuesday').on('click', function () {
         if ($(this).prop('checked')) {
             $('.input-group--tuesday').css('pointer-events', 'auto');
+            $('.input-group--tuesday').css('opacity', '1');
         } else {
             $('.input-group--tuesday').css('pointer-events', 'none');
             $(this).css('pointer-events', 'auto');
+            $('.input-group--tuesday').css('opacity', '0.5');
         }
     });
 
@@ -56,8 +60,128 @@ $('document').ready(function () {
         };
     });
 
+    // Расписание Среда
+    $('#checkboxWednesday').on('click', function () {
+        if ($(this).prop('checked')) {
+            $('.input-group--wednesday').css('pointer-events', 'auto');
+            $('.input-group--wednesday').css('opacity', '1');
+        } else {
+            $('.input-group--wednesday').css('pointer-events', 'none');
+            $(this).css('pointer-events', 'auto');
+            $('.input-group--wednesday').css('opacity', '0.5');
+        }
+    });
+
+    $('.btn-addTimeWednesday').on('click', function () {
+        if ($(this).hasClass('btn-addTime')) {
+            $('.addTimeWednesday').css('display', 'block');
+            $(this).removeClass('btn-addTime');
+        } else {
+            $('.addTimeWednesday').css('display', 'none');
+            $(this).addClass('btn-addTime');
+        };
+    });
+
+    // Расписание Четверг
+    $('#checkboxThursday').on('click', function () {
+        if ($(this).prop('checked')) {
+            $('.input-group--thursday').css('pointer-events', 'auto');
+            $('.input-group--thursday').css('opacity', '1');
+        } else {
+            $('.input-group--thursday').css('pointer-events', 'none');
+            $(this).css('pointer-events', 'auto');
+            $('.input-group--thursday').css('opacity', '0.5');
+        }
+    });
+
+    $('.btn-addTimeThursday').on('click', function () {
+        if ($(this).hasClass('btn-addTime')) {
+            $('.addTimeThursday').css('display', 'block');
+            $(this).removeClass('btn-addTime');
+        } else {
+            $('.addTimeThursday').css('display', 'none');
+            $(this).addClass('btn-addTime');
+        };
+    });
+
+    // Расписание Пятница
+    $('#checkboxFriday').on('click', function () {
+        if ($(this).prop('checked')) {
+            $('.input-group--friday').css('pointer-events', 'auto');
+            $('.input-group--friday').css('opacity', '1');
+        } else {
+            $('.input-group--friday').css('pointer-events', 'none');
+            $(this).css('pointer-events', 'auto');
+            $('.input-group--friday').css('opacity', '0.5');
+        }
+    });
+
+    $('.btn-addTimeFriday').on('click', function () {
+        if ($(this).hasClass('btn-addTime')) {
+            $('.addTimeFriday').css('display', 'block');
+            $(this).removeClass('btn-addTime');
+        } else {
+            $('.addTimeFriday').css('display', 'none');
+            $(this).addClass('btn-addTime');
+        };
+    });
+
+    // Расписание Суббота
+    $('#checkboxSaturday').on('click', function () {
+        if ($(this).prop('checked')) {
+            $('.input-group--saturday').css('pointer-events', 'auto');
+            $('.input-group--saturday').css('opacity', '1');
+        } else {
+            $('.input-group--saturday').css('pointer-events', 'none');
+            $(this).css('pointer-events', 'auto');
+            $('.input-group--saturday').css('opacity', '0.5');
+        }
+    });
+
+    $('.btn-addTimeSaturday').on('click', function () {
+        if ($(this).hasClass('btn-addTime')) {
+            $('.addTimeSaturday').css('display', 'block');
+            $(this).removeClass('btn-addTime');
+        } else {
+            $('.addTimeSaturday').css('display', 'none');
+            $(this).addClass('btn-addTime');
+        };
+    });
+
+    // Расписание Воскресенье
+    $('#checkboxSunday').on('change', function () {
+        if ($(this).prop('checked')) {
+            $('.input-group--sunday').css('pointer-events', 'auto');
+            $('.input-group--sunday').css('opacity', '1');
+        } else {
+            $('.input-group--sunday').css('pointer-events', 'none');
+            $(this).css('pointer-events', 'auto');
+            $('.input-group--sunday').css('opacity', '0.5');
+        }
+    });
+
+    $('.btn-addTimeSunday').on('click', function () {
+        if ($(this).hasClass('btn-addTime')) {
+            $('.addTimeSunday').css('display', 'block');
+            $(this).removeClass('btn-addTime');
+        } else {
+            $('.addTimeSunday').css('display', 'none');
+            $(this).addClass('btn-addTime');
+        };
+    });
 
 
+    var data = $.map(siteData, function (obj) {
+        obj.text = obj.text || obj.title;
+
+        return obj;
+    });
+
+    $('.form-select-sites').select2(
+        {
+            data: data
+        }
+    );
 
 });
 
@@ -92,6 +216,8 @@ formAddSite.addEventListener('submit', (e) => {
 
         siteData[name] = value;
     });
+
+
 
     console.log(siteData);
 
@@ -132,7 +258,7 @@ let tableData = [
         'address': 'Настроено',
         'description': 'Основной модуль',
         'verification': '',
-        'editing': ''
+        'editing': '<button></button>'
     },
 
     {
@@ -141,7 +267,7 @@ let tableData = [
         'address': 'ii@google.com',
         'description': 'Основной модуль',
         'verification': '',
-        'editing': ''
+        'editing': '<button></button>'
     },
 
     {
@@ -150,7 +276,7 @@ let tableData = [
         'address': 'Настроено',
         'description': 'Подсистема мониторинга',
         'verification': '',
-        'editing': ''
+        'editing': '<button></button>'
     },
 
     {
@@ -159,12 +285,13 @@ let tableData = [
         'address': 'Не подтверждён',
         'description': 'Мимо проходил',
         'verification': '29-6824',
-        'editing': ''
+        'editing': '<button></button>'
     }
 ];
 
 $('#table').DataTable({
     data: tableData,
+    dom: 'Bfrtip',
     columns: [
         { data: 'name' },
         { data: 'contactType' },
@@ -172,6 +299,62 @@ $('#table').DataTable({
         { data: 'description' },
         { data: 'verification' },
         { data: 'editing' }
+    ],
+    select: true,
+    buttons: [
+        'create'
     ]
 
+
+});
+
+siteData = [
+    {
+        'id': 1,
+        'title': 'Сайт1',
+        'link': 'https',
+        'selected': true,
+    },
+];
+
+
+
+
+const formSiteSave = document.querySelector('#form-site-save');
+
+formSiteSave.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+
+    const fields = formSiteSave.querySelectorAll('input, select');
+    const siteSaveData = {};
+
+    fields.forEach(field => {
+        const { name, value } = field;
+
+        siteData[name] = value;
+    });
+
+
+
+    console.log(siteSaveData);
+
+
+});
+
+
+
+function str_rand() {
+    var result = '';
+    var words = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+    var max_position = words.length - 1;
+    for (i = 0; i < 30; ++i) {
+        position = Math.floor(Math.random() * max_position);
+        result = result + words.substring(position, position + 1);
+    }
+    return result;
+}
+
+$('.card-system__form-api__btn-random').on('click', function () {
+    $('#apiKey').val(str_rand());
 });

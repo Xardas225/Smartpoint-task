@@ -12,7 +12,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="./js/plugins/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.2/b-2.0.0/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs5/dt-1.11.2/b-2.0.0/datatables.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -141,18 +143,18 @@
             </div>
 
 
-            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <!-- Вкладка Настройки -->
-                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                    <button class="nav-link nav-link-settings active" id="settings-tab" data-bs-toggle="pill"
+                        data-bs-target="#settings" type="button" role="tab" aria-controls="settings"
                         aria-selected="true">
                         Настройки
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <!-- Вкладка Уведомления -->
-                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                    <button class="nav-link nav-link-settings" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
                         Уведомления
@@ -161,7 +163,7 @@
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <!-- Контент Настройки -->
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="tab-pane fade show active" id="settings" role="tabpanel" aria-labelledby="settings-tab">
                     <!-- Кнопки переключения Общие/Опросы -->
                     <div class="tabs">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -231,8 +233,9 @@
                                             </div>
                                             <div class="card-system__form-phones mb-3">
                                                 <label for="phones">Телефоны</label>
-                                                <input name="phone" data-role="tagsinput" value="87839" type="text"
-                                                    class="card-system__form-phones__form form-control" id="phones">
+                                                <input name="phone" data-role="tagsinput" value="89223149134"
+                                                    type="text" class="card-system__form-phones__form form-control"
+                                                    id="phones">
                                             </div>
                                         </div>
 
@@ -255,20 +258,23 @@
                                                         <div class="accordion-body">
                                                             <div class="timetable mb-3">
                                                                 <!-- Понедельник -->
-                                                                <div class="input-group input-group--monday">
-                                                                    <input name="checkboxMonday"
-                                                                        class="form-check-input form-check-input--monday"
-                                                                        type="checkbox" value="" id="checkboxMonday"
-                                                                        checked>
-                                                                    <span class="span-monday">
+                                                                <div
+                                                                    class="input-group input-group-day input-group--monday">
+                                                                    <div class="checkbox-wrap">
+                                                                        <input name="checkboxMonday"
+                                                                            class="form-check-input form-check-input--monday"
+                                                                            type="checkbox" value="" id="checkboxMonday"
+                                                                            checked>
+                                                                    </div>
+                                                                    <span class="span-day span-monday">
                                                                         Понедельник
                                                                     </span>
-                                                                    <label for="startTimeMonday">С</label>
+                                                                    <label for="startTimeMonday">с</label>
                                                                     <input name="startTimeMonday" type="time"
                                                                         class="form-control form-control--startTime"
                                                                         id="startTimeMonday"
                                                                         aria-describedby="startTime">
-                                                                    <label for="endTimeMonday">По</label>
+                                                                    <label for="endTimeMonday">по</label>
                                                                     <input name="endTimeMonday" type="time"
                                                                         class="form-control form-control--endTime"
                                                                         id="endTimeMonday" aria-describedby="endTime">
@@ -277,14 +283,14 @@
                                                                         <img src="./images/clock.svg" alt="clock">
                                                                     </button>
                                                                     <div class="addTime addTimeMonday">
-                                                                        <div class="input-group ">
-                                                                            <label for="startTimeMondayExtra">С</label>
+                                                                        <div class="input-group input-group-extraday">
+                                                                            <label for="startTimeMondayExtra">с</label>
                                                                             <input name="startTimeMondayExtra"
                                                                                 type="time"
                                                                                 class="form-control form-control--startTime"
                                                                                 id="startTimeMondayExtra"
                                                                                 aria-describedby="startTime">
-                                                                            <label for="endTime">По</label>
+                                                                            <label for="endTime">по</label>
                                                                             <input name="endTimeMondayExtra" type="time"
                                                                                 class="form-control form-control--endTime"
                                                                                 id="endTimeMondayExtra"
@@ -293,34 +299,227 @@
                                                                     </div>
                                                                 </div>
                                                                 <!-- Вторник -->
-                                                                <div class="input-group input-group--tuesday">
-                                                                    <input
-                                                                        class="form-check-input form-check-input--tuesday"
-                                                                        type="checkbox" value="" id="checkboxTuesday"
-                                                                        checked>
-                                                                    <span class="span-tuesday">
+                                                                <div
+                                                                    class="input-group input-group-day input-group--tuesday">
+                                                                    <div class="checkbox-wrap">
+                                                                        <input
+                                                                            class="form-check-input form-check-input--tuesday"
+                                                                            type="checkbox" value=""
+                                                                            id="checkboxTuesday" checked>
+                                                                    </div>
+                                                                    <span class="span-day span-tuesday">
                                                                         Вторник
                                                                     </span>
-                                                                    <label for="startTime">С</label>
+                                                                    <label for="startTime">с</label>
                                                                     <input type="time"
                                                                         class="form-control form-control--startTime"
                                                                         id="startTime" aria-describedby="startTime">
-                                                                    <label for="endTime">По</label>
+                                                                    <label for="endTime">по</label>
                                                                     <input type="time"
                                                                         class="form-control form-control--endTime"
                                                                         id="endTime" aria-describedby="endTime">
                                                                     <button type="button"
-                                                                        class="btn btn-primary btn-addTime btn-addTimeTuesday">
+                                                                        class="btn btn-primary  btn-addTimeTuesday">
                                                                         <img src="./images/clock.svg" alt="clock">
                                                                     </button>
                                                                     <div class="addTime addTimeTuesday">
-                                                                        <div class="input-group">
-                                                                            <label for="startTime">С</label>
+                                                                        <div class="input-group input-group-extraday">
+                                                                            <label for="startTime">с</label>
                                                                             <input type="time"
                                                                                 class="form-control form-control--startTime"
                                                                                 id="startTime"
                                                                                 aria-describedby="startTime">
-                                                                            <label for="endTime">По</label>
+                                                                            <label for="endTime">по</label>
+                                                                            <input type="time"
+                                                                                class="form-control form-control--endTime"
+                                                                                id="endTime" aria-describedby="endTime">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Среда -->
+                                                                <div
+                                                                    class="input-group input-group-day input-group--wednesday">
+                                                                    <div class="checkbox-wrap">
+                                                                        <input
+                                                                            class="form-check-input form-check-input--wednesday"
+                                                                            type="checkbox" value=""
+                                                                            id="checkboxWednesday" checked>
+                                                                    </div>
+                                                                    <span class="span-day span-wednesday">
+                                                                        Среда
+                                                                    </span>
+                                                                    <label for="startTime">с</label>
+                                                                    <input type="time"
+                                                                        class="form-control form-control--startTime"
+                                                                        id="startTime" aria-describedby="startTime">
+                                                                    <label for="endTime">по</label>
+                                                                    <input type="time"
+                                                                        class="form-control form-control--endTime"
+                                                                        id="endTime" aria-describedby="endTime">
+                                                                    <button type="button"
+                                                                        class="btn btn-primary  btn-addTimeWednesday">
+                                                                        <img src="./images/clock.svg" alt="clock">
+                                                                    </button>
+                                                                    <div class="addTime addTimeWednesday">
+                                                                        <div class="input-group input-group-extraday">
+                                                                            <label for="startTime">с</label>
+                                                                            <input type="time"
+                                                                                class="form-control form-control--startTime"
+                                                                                id="startTime"
+                                                                                aria-describedby="startTime">
+                                                                            <label for="endTime">по</label>
+                                                                            <input type="time"
+                                                                                class="form-control form-control--endTime"
+                                                                                id="endTime" aria-describedby="endTime">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Четверг -->
+                                                                <div
+                                                                    class="input-group input-group-day input-group--thursday">
+                                                                    <div class="checkbox-wrap">
+                                                                        <input
+                                                                            class="form-check-input form-check-input--thursday"
+                                                                            type="checkbox" value=""
+                                                                            id="checkboxThursday" checked>
+                                                                    </div>
+                                                                    <span class="span-day span-thursday">
+                                                                        Четверг
+                                                                    </span>
+                                                                    <label for="startTime">с</label>
+                                                                    <input type="time"
+                                                                        class="form-control form-control--startTime"
+                                                                        id="startTime" aria-describedby="startTime">
+                                                                    <label for="endTime">по</label>
+                                                                    <input type="time"
+                                                                        class="form-control form-control--endTime"
+                                                                        id="endTime" aria-describedby="endTime">
+                                                                    <button type="button"
+                                                                        class="btn btn-primary  btn-addTimeThursday">
+                                                                        <img src="./images/clock.svg" alt="clock">
+                                                                    </button>
+                                                                    <div class="addTime addTimeThursday">
+                                                                        <div class="input-group input-group-extraday">
+                                                                            <label for="startTime">с</label>
+                                                                            <input type="time"
+                                                                                class="form-control form-control--startTime"
+                                                                                id="startTime"
+                                                                                aria-describedby="startTime">
+                                                                            <label for="endTime">по</label>
+                                                                            <input type="time"
+                                                                                class="form-control form-control--endTime"
+                                                                                id="endTime" aria-describedby="endTime">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Пятница -->
+                                                                <div
+                                                                    class="input-group input-group-day input-group--friday">
+                                                                    <div class="checkbox-wrap">
+                                                                        <input
+                                                                            class="form-check-input form-check-input--friday"
+                                                                            type="checkbox" value="" id="checkboxFriday"
+                                                                            checked>
+                                                                    </div>
+                                                                    <span class="span-day span-friday">
+                                                                        Пятница
+                                                                    </span>
+                                                                    <label for="startTime">с</label>
+                                                                    <input type="time"
+                                                                        class="form-control form-control--startTime"
+                                                                        id="startTime" aria-describedby="startTime">
+                                                                    <label for="endTime">по</label>
+                                                                    <input type="time"
+                                                                        class="form-control form-control--endTime"
+                                                                        id="endTime" aria-describedby="endTime">
+                                                                    <button type="button"
+                                                                        class="btn btn-primary  btn-addTimeFriday">
+                                                                        <img src="./images/clock.svg" alt="clock">
+                                                                    </button>
+                                                                    <div class="addTime addTimeFriday">
+                                                                        <div class="input-group input-group-extraday">
+                                                                            <label for="startTime">с</label>
+                                                                            <input type="time"
+                                                                                class="form-control form-control--startTime"
+                                                                                id="startTime"
+                                                                                aria-describedby="startTime">
+                                                                            <label for="endTime">по</label>
+                                                                            <input type="time"
+                                                                                class="form-control form-control--endTime"
+                                                                                id="endTime" aria-describedby="endTime">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Суббота -->
+                                                                <div
+                                                                    class="input-group input-group-day input-group--saturday">
+                                                                    <div class="checkbox-wrap">
+                                                                        <input
+                                                                            class="form-check-input form-check-input--saturday"
+                                                                            type="checkbox" value=""
+                                                                            id="checkboxSaturday" checked>
+                                                                    </div>
+                                                                    <span class="span-day span-saturday">
+                                                                        Суббота
+                                                                    </span>
+                                                                    <label for="startTime">с</label>
+                                                                    <input type="time"
+                                                                        class="form-control form-control--startTime"
+                                                                        id="startTime" aria-describedby="startTime">
+                                                                    <label for="endTime">по</label>
+                                                                    <input type="time"
+                                                                        class="form-control form-control--endTime"
+                                                                        id="endTime" aria-describedby="endTime">
+                                                                    <button type="button"
+                                                                        class="btn btn-primary  btn-addTimeSaturday">
+                                                                        <img src="./images/clock.svg" alt="clock">
+                                                                    </button>
+                                                                    <div class="addTime addTimeSaturday">
+                                                                        <div class="input-group input-group-extraday">
+                                                                            <label for="startTime">с</label>
+                                                                            <input type="time"
+                                                                                class="form-control form-control--startTime"
+                                                                                id="startTime"
+                                                                                aria-describedby="startTime">
+                                                                            <label for="endTime">по</label>
+                                                                            <input type="time"
+                                                                                class="form-control form-control--endTime"
+                                                                                id="endTime" aria-describedby="endTime">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Воскресенье -->
+                                                                <div
+                                                                    class="input-group input-group-day input-group--sunday">
+                                                                    <div class="checkbox-wrap">
+                                                                        <input
+                                                                            class="form-check-input form-check-input--sunday"
+                                                                            type="checkbox" value="" id="checkboxSunday"
+                                                                            checked>
+                                                                    </div>
+                                                                    <span class="span-day span-sunday">
+                                                                        Воскресенье
+                                                                    </span>
+                                                                    <label for="startTime">с</label>
+                                                                    <input type="time"
+                                                                        class="form-control form-control--startTime"
+                                                                        id="startTime" aria-describedby="startTime">
+                                                                    <label for="endTime">по</label>
+                                                                    <input type="time"
+                                                                        class="form-control form-control--endTime"
+                                                                        id="endTime" aria-describedby="endTime">
+                                                                    <button type="button"
+                                                                        class="btn btn-primary  btn-addTimeSunday">
+                                                                        <img src="./images/clock.svg" alt="clock">
+                                                                    </button>
+                                                                    <div class="addTime addTimeSunday">
+                                                                        <div class="input-group input-group-extraday">
+                                                                            <label for="startTime">с</label>
+                                                                            <input type="time"
+                                                                                class="form-control form-control--startTime"
+                                                                                id="startTime"
+                                                                                aria-describedby="startTime">
+                                                                            <label for="endTime">по</label>
                                                                             <input type="time"
                                                                                 class="form-control form-control--endTime"
                                                                                 id="endTime" aria-describedby="endTime">
@@ -332,10 +531,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="btn-save__container">
-                                                <button type="submit"
-                                                    class="btn-save btn btn-primary">Сохранить</button>
-                                            </div>
+
+                                        </div>
+                                        <div class="btn-save__container">
+                                            <button type="submit" class="btn-save btn btn-primary">Сохранить</button>
                                         </div>
                                     </div>
                                 </form>
@@ -346,25 +545,29 @@
                             <div class="tab-pane fade" id="notice" role="tabpanel" aria-labelledby="notice-tab">
                                 <div class="card">
                                     <div class="card-polls">
-                                        <h3 class="card-polls__title">
-                                            Сайты
-                                        </h3>
-                                        <div class="mb-3">
-                                            <select multiple class="form-select form-select-lg mb-3" aria-label="select"
-                                                data-role="tagsinput">
-                                                <option value='Amsterdam'>Amsterdam</option>
-                                            </select>
-                                        </div>
-                                        <!-- Button trigger modal -->
-                                        <div class="btn-addSite__container mb-3">
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#addSite">
-                                                Добавить сайт
-                                            </button>
-                                        </div>
-                                        <div class="btn-save__container mb-3">
-                                            <button type="submit" class="btn btn-primary">Сохранить</button>
-                                        </div>
+                                        <form id="form-site-save" method="POST">
+                                            <h3 class="card-polls__title">
+                                                Сайты
+                                            </h3>
+                                            <div class="mb-3">
+                                                <select style="width: 100%" multiple="multiple"
+                                                    class="form-select form-select-sites form-select-lg mb-3"
+                                                    aria-label="select">
+                                                </select>
+                                            </div>
+                                            <!-- Button trigger modal -->
+
+                                            <div class="btn-addSite__container mb-3">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#addSite">
+                                                    Добавить сайт
+                                                </button>
+                                            </div>
+                                            <div class="btn-save__container mb-3">
+                                                <button type="submit"
+                                                    class="btn btn-site-save btn-primary">Сохранить</button>
+                                            </div>
+                                        </form>
 
                                         <!-- Modal -->
                                         <form action="#" id="form-addSite" method="POST">
@@ -383,7 +586,7 @@
                                                             <div class="mb-3">
                                                                 <label for="platform" class="form-label">Выберите
                                                                     платформу</label>
-                                                                <select name="sitePlatform" class="form-select"
+                                                                <select name="platform" class="form-select"
                                                                     aria-label="selectPlatform">
                                                                     <option selected></option>
                                                                     <option value="1">One</option>
@@ -392,15 +595,14 @@
                                                                 </select>
                                                             </div>
                                                             <div class="mb-3">
-                                                                <label for="siteLink" class="form-label">Укажите
+                                                                <label for="link" class="form-label">Укажите
                                                                     ссылку</label>
-                                                                <input name="siteLink" type="text" class="form-control"
+                                                                <input name="link" type="text" class="form-control"
                                                                     id="siteLink" aria-describedby="siteLink">
                                                             </div>
                                                             <div class="mb-3">
-                                                                <label for="siteName"
-                                                                    class="form-label">Название</label>
-                                                                <input name="siteName" type="text" class="form-control"
+                                                                <label for="title" class="form-label">Название</label>
+                                                                <input name="title" type="text" class="form-control"
                                                                     id="siteName" aria-describedby="siteName">
                                                             </div>
                                                         </div>
@@ -422,7 +624,8 @@
 
                 </div>
                 <!-- Контент Уведомления -->
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <div class="contacts tab-pane fade" id="pills-profile" role="tabpanel"
+                    aria-labelledby="pills-profile-tab">
 
                     <ul class="nav nav-tabs" id="contacts" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -433,45 +636,47 @@
                             </button>
                         </li>
                     </ul>
-                    <div class="tab-content" id="myTabContent">
+                    <div class="tab-content table-content" id="myTabContent">
                         <!-- Контент Служебные контакты -->
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            
-                            
-                            <div class="row">
-                                <table id="table" class="table display table-striped border-top border-bottom">
-                                    <thead>
-                                        <tr role="row">
-                                            <th>Название</th>
-                                            <th>Тип контакта</th>
-                                            <th>Адрес</th>
-                                            <th>Описание</th>
-                                            <th>Верификация</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody >
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>  
-                                            <td></td>  
-                                        </tr>
-                                        <tr >
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="container container-table">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                                <div class="card-table">
+                                    <div class="row">
+                                        <table id="table" class="display table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Название</th>
+                                                    <th>Тип контакта</th>
+                                                    <th>Адрес</th>
+                                                    <th>Описание</th>
+                                                    <th>Верификация</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td class="edit"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
                             </div>
-                        
-                        
-                        
                         </div>
-                    
-                    
+
+
                     </div>
 
 
@@ -486,8 +691,9 @@
         </div>
     </main>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.2/b-2.0.0/datatables.min.js"></script>
-    <script src="./js/jquery.random.min.js"></script>
     <script src="./js/plugins/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.min.js"></script>
     <script src="./js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
