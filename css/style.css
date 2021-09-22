@@ -258,3 +258,20 @@ input[type="time"]{
     left: 0;
     bottom: 0;
 }
+
+.btn-addTime > img {
+    pointer-events: none;
+}
+
+.hide {
+    display: block;
+}
+
+.pointer-auto {
+    pointer-events: auto;
+}
+
+.pointer-none {
+    pointer-events: none;
+    opacity: 0.5;
+}

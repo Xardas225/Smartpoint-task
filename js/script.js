@@ -10,167 +10,6 @@ $('document').ready(function () {
         $('#apiKey').removeAttr('disabled');
     });
 
-    // Рандом АПИ ключа
-    // $('.card-system__form-api__btn-random').on('click', function () {
-    //     let random = Math.random().toString(36);
-    //     $('#apiKey').val(random);
-    // });
-
-    // Расписание Понедельник
-    $('#checkboxMonday').on('click', function () {
-        if ($(this).prop('checked')) {
-            $('.input-group--monday').css('pointer-events', 'auto');
-            $('.input-group--monday').css('opacity', '1');
-        } else {
-            $('.input-group--monday').css('pointer-events', 'none');
-            $(this).css('pointer-events', 'auto');
-            $('.input-group--monday').css('opacity', '0.5');
-        }
-    });
-
-    $('.btn-addTimeMonday').on('click', function () {
-        if ($(this).hasClass('btn-addTime')) {
-            $('.addTimeMonday').css('display', 'block');
-            $(this).removeClass('btn-addTime');
-        } else {
-            $('.addTimeMonday').css('display', 'none');
-            $(this).addClass('btn-addTime');
-        };
-    });
-
-    // Расписание Вторник
-    $('#checkboxTuesday').on('click', function () {
-        if ($(this).prop('checked')) {
-            $('.input-group--tuesday').css('pointer-events', 'auto');
-            $('.input-group--tuesday').css('opacity', '1');
-        } else {
-            $('.input-group--tuesday').css('pointer-events', 'none');
-            $(this).css('pointer-events', 'auto');
-            $('.input-group--tuesday').css('opacity', '0.5');
-        }
-    });
-
-    $('.btn-addTimeTuesday').on('click', function () {
-        if ($(this).hasClass('btn-addTime')) {
-            $('.addTimeTuesday').css('display', 'block');
-            $(this).removeClass('btn-addTime');
-        } else {
-            $('.addTimeTuesday').css('display', 'none');
-            $(this).addClass('btn-addTime');
-        };
-    });
-
-    // Расписание Среда
-    $('#checkboxWednesday').on('click', function () {
-        if ($(this).prop('checked')) {
-            $('.input-group--wednesday').css('pointer-events', 'auto');
-            $('.input-group--wednesday').css('opacity', '1');
-        } else {
-            $('.input-group--wednesday').css('pointer-events', 'none');
-            $(this).css('pointer-events', 'auto');
-            $('.input-group--wednesday').css('opacity', '0.5');
-        }
-    });
-
-    $('.btn-addTimeWednesday').on('click', function () {
-        if ($(this).hasClass('btn-addTime')) {
-            $('.addTimeWednesday').css('display', 'block');
-            $(this).removeClass('btn-addTime');
-        } else {
-            $('.addTimeWednesday').css('display', 'none');
-            $(this).addClass('btn-addTime');
-        };
-    });
-
-    // Расписание Четверг
-    $('#checkboxThursday').on('click', function () {
-        if ($(this).prop('checked')) {
-            $('.input-group--thursday').css('pointer-events', 'auto');
-            $('.input-group--thursday').css('opacity', '1');
-        } else {
-            $('.input-group--thursday').css('pointer-events', 'none');
-            $(this).css('pointer-events', 'auto');
-            $('.input-group--thursday').css('opacity', '0.5');
-        }
-    });
-
-    $('.btn-addTimeThursday').on('click', function () {
-        if ($(this).hasClass('btn-addTime')) {
-            $('.addTimeThursday').css('display', 'block');
-            $(this).removeClass('btn-addTime');
-        } else {
-            $('.addTimeThursday').css('display', 'none');
-            $(this).addClass('btn-addTime');
-        };
-    });
-
-    // Расписание Пятница
-    $('#checkboxFriday').on('click', function () {
-        if ($(this).prop('checked')) {
-            $('.input-group--friday').css('pointer-events', 'auto');
-            $('.input-group--friday').css('opacity', '1');
-        } else {
-            $('.input-group--friday').css('pointer-events', 'none');
-            $(this).css('pointer-events', 'auto');
-            $('.input-group--friday').css('opacity', '0.5');
-        }
-    });
-
-    $('.btn-addTimeFriday').on('click', function () {
-        if ($(this).hasClass('btn-addTime')) {
-            $('.addTimeFriday').css('display', 'block');
-            $(this).removeClass('btn-addTime');
-        } else {
-            $('.addTimeFriday').css('display', 'none');
-            $(this).addClass('btn-addTime');
-        };
-    });
-
-    // Расписание Суббота
-    $('#checkboxSaturday').on('click', function () {
-        if ($(this).prop('checked')) {
-            $('.input-group--saturday').css('pointer-events', 'auto');
-            $('.input-group--saturday').css('opacity', '1');
-        } else {
-            $('.input-group--saturday').css('pointer-events', 'none');
-            $(this).css('pointer-events', 'auto');
-            $('.input-group--saturday').css('opacity', '0.5');
-        }
-    });
-
-    $('.btn-addTimeSaturday').on('click', function () {
-        if ($(this).hasClass('btn-addTime')) {
-            $('.addTimeSaturday').css('display', 'block');
-            $(this).removeClass('btn-addTime');
-        } else {
-            $('.addTimeSaturday').css('display', 'none');
-            $(this).addClass('btn-addTime');
-        };
-    });
-
-    // Расписание Воскресенье
-    $('#checkboxSunday').on('change', function () {
-        if ($(this).prop('checked')) {
-            $('.input-group--sunday').css('pointer-events', 'auto');
-            $('.input-group--sunday').css('opacity', '1');
-        } else {
-            $('.input-group--sunday').css('pointer-events', 'none');
-            $(this).css('pointer-events', 'auto');
-            $('.input-group--sunday').css('opacity', '0.5');
-        }
-    });
-
-    $('.btn-addTimeSunday').on('click', function () {
-        if ($(this).hasClass('btn-addTime')) {
-            $('.addTimeSunday').css('display', 'block');
-            $(this).removeClass('btn-addTime');
-        } else {
-            $('.addTimeSunday').css('display', 'none');
-            $(this).addClass('btn-addTime');
-        };
-    });
-
-
     var data = $.map(siteData, function (obj) {
         obj.text = obj.text || obj.title;
 
@@ -185,6 +24,38 @@ $('document').ready(function () {
 
 });
 
+
+
+// Реализация добавления на страницу интервала времени
+let buttonsAddTime = document.querySelectorAll('.btn-addTime');
+
+for(let buttonAddTime of buttonsAddTime) {
+    buttonAddTime.addEventListener('click', addTime);
+};
+
+function addTime(event) {
+    let newTime = event.target.parentElement.querySelector('.addTime');
+    newTime.classList.toggle('hide');
+};
+
+
+// Поведение чекбокса
+let checkboxsTime = document.querySelectorAll('.checkbox-time');
+
+for(let checkboxTime of checkboxsTime) {
+    checkboxTime.addEventListener('change', checkTime);
+};
+
+function checkTime(event) {
+    let input = event.target.parentElement.parentElement;
+
+    if(!event.target.checked) {
+        input.classList.add('pointer-none');
+        event.target.classList.add('pointer-auto');
+    } else {
+        input.classList.remove('pointer-none'); 
+    };
+};
 
 
 
