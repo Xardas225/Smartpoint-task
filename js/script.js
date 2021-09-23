@@ -22,8 +22,18 @@ $('document').ready(function () {
         }
     );
 
+    
+
 });
 
+siteData = [
+    {
+        'id': 1,
+        'title': 'Сайт1',
+        'link': 'https',
+        'selected': true,
+    },
+];
 
 
 // Реализация добавления на страницу интервала времени
@@ -68,6 +78,7 @@ formAddSite.addEventListener('submit', (e) => {
     e.preventDefault();
 
 
+    
     // const sitePlatform = formAddSite.querySelector('[name="sitePlatform"]'),
     //       siteLink = formAddSite.querySelector('[name="siteLink"]'),
     //       siteName = formAddSite.querySelector('[name="siteName"]')
@@ -121,7 +132,7 @@ generalForm.addEventListener('submit', (e) => {
 });
 
 
-
+// Данные для таблицы "Служебные контакты"
 let tableData = [
     {
         'name': 'Иван Иванов',
@@ -179,14 +190,7 @@ $('#table').DataTable({
 
 });
 
-siteData = [
-    {
-        'id': 1,
-        'title': 'Сайт1',
-        'link': 'https',
-        'selected': true,
-    },
-];
+
 
 
 
