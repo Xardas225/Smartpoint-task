@@ -10,30 +10,21 @@ $('document').ready(function () {
         $('#apiKey').removeAttr('disabled');
     });
 
-    var data = $.map(siteData, function (obj) {
-        obj.text = obj.text || obj.title;
+    // Метод добавления данных в select2
+    // var data = $.map(siteData, function (obj) {
+    //     obj.text = obj.text || obj.title;
 
-        return obj;
-    });
+    //     return obj;
+    // });
 
     $('.form-select-sites').select2(
-        {
-            data: data
-        }
+        
+        
     );
 
-    
 
 });
 
-siteData = [
-    {
-        'id': 1,
-        'title': 'Сайт1',
-        'link': 'https',
-        'selected': true,
-    },
-];
 
 
 // Реализация добавления на страницу интервала времени
@@ -68,27 +59,12 @@ function checkTime(event) {
 };
 
 
-
-
-
-// Закидываю данные с попапа "Добавить сайт" в объект
+// Закидываю данные с попапа "Добавить сайт" в select2
 const formAddSite = document.querySelector('#form-addSite');
 
 formAddSite.addEventListener('submit', (e) => {
     e.preventDefault();
 
-
-    
-    // const sitePlatform = formAddSite.querySelector('[name="sitePlatform"]'),
-    //       siteLink = formAddSite.querySelector('[name="siteLink"]'),
-    //       siteName = formAddSite.querySelector('[name="siteName"]')
-
-
-    // let siteData = {
-    //     platform: sitePlatform.value,
-    //     link: siteLink.value,
-    //     name: siteName.value,
-    // };
 
     const fields = formAddSite.querySelectorAll('input, select');
     const siteData = {};
@@ -100,11 +76,18 @@ formAddSite.addEventListener('submit', (e) => {
     });
 
 
-
     console.log(siteData);
+
+    var newOption = new Option(siteData.title, siteData.id, siteData.link, false, false);
+    $('.form-select-sites').append(newOption).trigger('change');
 
 
 });
+
+
+
+
+
 
 
 
@@ -112,17 +95,6 @@ const generalForm = document.querySelector('#generalForm');
 
 generalForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
-
-    // const generalFields = generalForm.querySelectorAll('input, select, checkbox');
-    // const generalData = {};
-
-
-    // generalFields.forEach(generalField => {
-    //     const{name, value} = generalField;
-
-    //     generalData[name] = value;
-    // });
 
 
     const formData = new FormData(generalForm);
@@ -218,7 +190,7 @@ formSiteSave.addEventListener('submit', (e) => {
 });
 
 
-
+// Функция для рандома Апи-ключа
 function str_rand() {
     var result = '';
     var words = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
