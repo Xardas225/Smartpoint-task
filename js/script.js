@@ -10,17 +10,10 @@ $('document').ready(function () {
         $('#apiKey').removeAttr('disabled');
     });
 
-    // Метод добавления данных в select2
-    // var data = $.map(siteData, function (obj) {
-    //     obj.text = obj.text || obj.title;
 
-    //     return obj;
-    // });
-
-    $('.form-select-sites').select2(
+    $('.form-select-sites').select2();
 
 
-    );
 
 
 });
@@ -65,6 +58,8 @@ function checkTime(event) {
 };
 
 
+
+
 // Окно добавления сайта
 let openModalAddSite = new bootstrap.Modal(document.querySelector('#addSite'));
 let buttonModalAddSite = document.querySelector('.btn-addSite-modal');
@@ -73,10 +68,19 @@ buttonModalAddSite.addEventListener('click', (e) => {
     openModalAddSite.show()
 });
 
+function format(state) {
+    if (!state.id) return state.text; // optgroup
+    return "<img class='flag' src='images/" + state.id.toLowerCase() + ".png'/>" + state.text;
+}
+
+
+$('.select2Platform').select2();
+
+
 // Добавление нового сайта в select2
 (function addSites() {
 
-    let formAddSite = document.querySelector('#form-addSite')
+    let formAddSite = document.querySelector('#form-addSite');
     let buttonAddSite = document.querySelector('.btn-addSite');
 
     buttonAddSite.addEventListener('click', (e) => {
@@ -89,10 +93,11 @@ buttonModalAddSite.addEventListener('click', (e) => {
             siteData[name] = value;
         });
         console.log(siteData);
-        var newOption = new Option(siteData.title, siteData.id, siteData.link, false, false);
+        var newOption = new Option(siteData.title, siteData.platform, siteData.link, false, false);
         $('.form-select-sites').append(newOption).trigger('change');
 
         openModalAddSite.hide()
+        formAddSite.reset();
 
 
     });
@@ -145,15 +150,51 @@ buttonModalAddSite.addEventListener('click', (e) => {
 
 const generalForm = document.querySelector('#generalForm');
 
-generalForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+$("#generalForm").validate({
+    submitHandler: function (e) {
+        $.ajax({
+            url: '/index.php',
+            method: 'post',
+            dataType: 'html',
+            // data: { text: 'Текст' },
+            success: function (data) {
 
+                const formData = new FormData(generalForm);
+                const generalData = Object.fromEntries(formData.entries());
 
-    const formData = new FormData(generalForm);
-    const generalData = Object.fromEntries(formData.entries());
-
-    console.log(generalData);
+                console.log(generalData);
+            }
+        });
+    },
+    ignore: [],
+    rules: {
+        systemName: {
+            required: true,
+            minlength: 4
+        },
+        timezone: {
+            required: true
+        },
+        apiKey: {
+            required: true,
+            minlength: 30
+        },
+        phone: {
+            required: true,
+            minlength: 11
+        }
+    }
 });
+
+// generalForm.addEventListener('submit', (e) => {
+//     e.preventDefault();
+
+
+//     const formData = new FormData(generalForm);
+//     const generalData = Object.fromEntries(formData.entries());
+
+//     console.log(generalData);
+// });
 
 
 // Данные для таблицы "Служебные контакты"
@@ -213,8 +254,6 @@ $('#table').DataTable({
 
 
 });
-
-
 
 
 

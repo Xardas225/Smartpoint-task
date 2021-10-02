@@ -275,3 +275,7 @@ input[type="time"]{
     pointer-events: none;
     opacity: 0.5;
 }
+
+.select2-container.select2-container--default.select2-container--open  {
+    z-index: 5000;
+  }
