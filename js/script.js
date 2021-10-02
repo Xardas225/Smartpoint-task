@@ -18,8 +18,8 @@ $('document').ready(function () {
     // });
 
     $('.form-select-sites').select2(
-        
-        
+
+
     );
 
 
@@ -27,10 +27,16 @@ $('document').ready(function () {
 
 
 
+
+
+
+
+
+
 // Реализация добавления на страницу интервала времени
 let buttonsAddTime = document.querySelectorAll('.btn-addTime');
 
-for(let buttonAddTime of buttonsAddTime) {
+for (let buttonAddTime of buttonsAddTime) {
     buttonAddTime.addEventListener('click', addTime);
 };
 
@@ -43,46 +49,92 @@ function addTime(event) {
 // Поведение чекбокса
 let checkboxsTime = document.querySelectorAll('.checkbox-time');
 
-for(let checkboxTime of checkboxsTime) {
+for (let checkboxTime of checkboxsTime) {
     checkboxTime.addEventListener('change', checkTime);
 };
 
 function checkTime(event) {
     let input = event.target.parentElement.parentElement;
 
-    if(!event.target.checked) {
+    if (!event.target.checked) {
         input.classList.add('pointer-none');
         event.target.classList.add('pointer-auto');
     } else {
-        input.classList.remove('pointer-none'); 
+        input.classList.remove('pointer-none');
     };
 };
 
 
-// Закидываю данные с попапа "Добавить сайт" в select2
-const formAddSite = document.querySelector('#form-addSite');
+// Окно добавления сайта
+let openModalAddSite = new bootstrap.Modal(document.querySelector('#addSite'));
+let buttonModalAddSite = document.querySelector('.btn-addSite-modal');
 
-formAddSite.addEventListener('submit', (e) => {
-    e.preventDefault();
+buttonModalAddSite.addEventListener('click', (e) => {
+    openModalAddSite.show()
+});
+
+// Добавление нового сайта в select2
+(function addSites() {
+
+    let formAddSite = document.querySelector('#form-addSite')
+    let buttonAddSite = document.querySelector('.btn-addSite');
+
+    buttonAddSite.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const fields = formAddSite.querySelectorAll('input, select');
+        const siteData = {};
+        fields.forEach(field => {
+            const { name, value } = field;
+            siteData[name] = value;
+        });
+        console.log(siteData);
+        var newOption = new Option(siteData.title, siteData.id, siteData.link, false, false);
+        $('.form-select-sites').append(newOption).trigger('change');
+
+        openModalAddSite.hide()
 
 
-    const fields = formAddSite.querySelectorAll('input, select');
-    const siteData = {};
-
-    fields.forEach(field => {
-        const { name, value } = field;
-
-        siteData[name] = value;
     });
 
 
-    console.log(siteData);
 
-    var newOption = new Option(siteData.title, siteData.id, siteData.link, false, false);
-    $('.form-select-sites').append(newOption).trigger('change');
+})()
 
 
-});
+
+
+// formAddSite.addEventListener('submit', (e) => {
+//     e.preventDefault();
+
+
+
+//     // const sitePlatform = formAddSite.querySelector('[name="sitePlatform"]'),
+//     //       siteLink = formAddSite.querySelector('[name="siteLink"]'),
+//     //       siteName = formAddSite.querySelector('[name="siteName"]')
+
+
+//     // let siteData = {
+//     //     platform: sitePlatform.value,
+//     //     link: siteLink.value,
+//     //     name: siteName.value,
+//     // };
+
+//     const fields = formAddSite.querySelectorAll('input, select');
+//     const siteData = {};
+
+//     fields.forEach(field => {
+//         const { name, value } = field;
+
+//         siteData[name] = value;
+//     });
+
+
+
+//     console.log(siteData);
+
+
+// });
 
 
 
