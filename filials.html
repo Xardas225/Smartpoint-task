@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="./js/plugins/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/v/bs5/dt-1.11.2/b-2.0.0/datatables.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.11.0/b-2.0.0/sl-1.3.3/datatables.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
@@ -197,9 +199,9 @@
                                                 Системные
                                             </h3>
                                             <div class="card-system__form-name mb-3">
-                                                <label for="systemName"
+                                                <label for="name"
                                                     class="card-system__form-name__label form-label">Название</label>
-                                                <input name="systemName" type="text"
+                                                <input name="name" type="text"
                                                     class="card-system__form-name__form form-control" id="systemName">
                                             </div>
                                             <div class="card-system__form-timezone mb-3">
@@ -216,9 +218,9 @@
                                                 </select>
                                             </div>
                                             <div class="card-system__form-api mb-3">
-                                                <label for="apiKey">Ключ АПИ</label>
+                                                <label for="key">Ключ АПИ</label>
                                                 <div class="input-group">
-                                                    <input name="apiKey" id="apiKey"
+                                                    <input name="key" id="apiKey"
                                                         class="form-control card-system__form-api__input" type="text"
                                                         placeholder="" aria-label="readonly input" disabled>
                                                     <button class="card-system__form-api__btn-dis" type="button">
@@ -233,7 +235,7 @@
                                             </div>
                                             <div class="card-system__form-phones mb-3">
                                                 <label for="phones">Телефоны</label>
-                                                <input name="phone" data-role="tagsinput" value="89223149134"
+                                                <input name="phones" data-role="tagsinput" value="89223149134"
                                                     type="text" class="card-system__form-phones__form form-control"
                                                     id="phones">
                                             </div>
@@ -261,7 +263,7 @@
                                                                 <div
                                                                     class="input-group input-group-day input-group--monday">
                                                                     <div class="checkbox-wrap">
-                                                                        <input name="checkboxMonday"
+                                                                        <input name="checkbox"
                                                                             class="form-check-input checkbox-time form-check-input--monday"
                                                                             type="checkbox" value="" id="checkboxMonday"
                                                                             checked>
@@ -269,13 +271,13 @@
                                                                     <span class="span-day span-monday">
                                                                         Понедельник
                                                                     </span>
-                                                                    <label for="startTimeMonday">с</label>
-                                                                    <input name="startTimeMonday" type="time"
+                                                                    <label for="from">с</label>
+                                                                    <input name="from" type="time"
                                                                         class="form-control form-control--startTime"
                                                                         id="startTimeMonday"
                                                                         aria-describedby="startTime">
-                                                                    <label for="endTimeMonday">по</label>
-                                                                    <input name="endTimeMonday" type="time"
+                                                                    <label for="to">по</label>
+                                                                    <input name="to" type="time"
                                                                         class="form-control form-control--endTime"
                                                                         id="endTimeMonday" aria-describedby="endTime">
                                                                     <button type="button"
@@ -284,14 +286,14 @@
                                                                     </button>
                                                                     <div class="addTime addTimeMonday">
                                                                         <div class="input-group input-group-extraday">
-                                                                            <label for="startTimeMondayExtra">с</label>
-                                                                            <input name="startTimeMondayExtra"
+                                                                            <label for="from">с</label>
+                                                                            <input name="from"
                                                                                 type="time"
                                                                                 class="form-control form-control--startTime"
                                                                                 id="startTimeMondayExtra"
                                                                                 aria-describedby="startTime">
-                                                                            <label for="endTime">по</label>
-                                                                            <input name="endTimeMondayExtra" type="time"
+                                                                            <label for="to">по</label>
+                                                                            <input name="to" type="time"
                                                                                 class="form-control form-control--endTime"
                                                                                 id="endTimeMondayExtra"
                                                                                 aria-describedby="endTime">
@@ -310,12 +312,12 @@
                                                                     <span class="span-day span-tuesday">
                                                                         Вторник
                                                                     </span>
-                                                                    <label for="startTime">с</label>
-                                                                    <input type="time"  name="startTimeTuesday"
+                                                                    <label for="from">с</label>
+                                                                    <input type="time" name="from"
                                                                         class="form-control form-control--startTime"
                                                                         id="startTime" aria-describedby="startTime">
-                                                                    <label for="endTime">по</label>
-                                                                    <input type="time" name="endTimeTuesday"
+                                                                    <label for="for">по</label>
+                                                                    <input type="time" name="from"
                                                                         class="form-control form-control--endTime"
                                                                         id="endTime" aria-describedby="endTime">
                                                                     <button type="button"
@@ -324,20 +326,22 @@
                                                                     </button>
                                                                     <div class="addTime addTimeTuesday">
                                                                         <div class="input-group input-group-extraday">
-                                                                            <label for="startTime">с</label>
-                                                                            <input type="time" name="startTimeTuesdayExtra"
+                                                                            <label for="for">с</label>
+                                                                            <input type="time"
+                                                                                name="for"
                                                                                 class="form-control form-control--startTime"
                                                                                 id="startTime"
                                                                                 aria-describedby="startTime">
-                                                                            <label for="endTime">по</label>
-                                                                            <input type="time" name="startTimeTuesdayExtra"
+                                                                            <label for="to">по</label>
+                                                                            <input type="time"
+                                                                                name="to"
                                                                                 class="form-control form-control--endTime"
                                                                                 id="endTime" aria-describedby="endTime">
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <!-- Среда -->
-                                                                <div
+                                                                <!-- <div
                                                                     class="input-group input-group-day input-group--wednesday">
                                                                     <div class="checkbox-wrap">
                                                                         <input
@@ -373,9 +377,9 @@
                                                                                 id="endTime" aria-describedby="endTime">
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                </div> -->
                                                                 <!-- Четверг -->
-                                                                <div
+                                                                <!-- <div
                                                                     class="input-group input-group-day input-group--thursday">
                                                                     <div class="checkbox-wrap">
                                                                         <input
@@ -411,9 +415,9 @@
                                                                                 id="endTime" aria-describedby="endTime">
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                </div> -->
                                                                 <!-- Пятница -->
-                                                                <div
+                                                                <!-- <div
                                                                     class="input-group input-group-day checkbox-time input-group--friday">
                                                                     <div class="checkbox-wrap">
                                                                         <input
@@ -449,9 +453,9 @@
                                                                                 id="endTime" aria-describedby="endTime">
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                </div> -->
                                                                 <!-- Суббота -->
-                                                                <div
+                                                                <!-- <div
                                                                     class="input-group input-group-day input-group--saturday">
                                                                     <div class="checkbox-wrap">
                                                                         <input
@@ -487,9 +491,9 @@
                                                                                 id="endTime" aria-describedby="endTime">
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                </div> -->
                                                                 <!-- Воскресенье -->
-                                                                <div
+                                                                <!-- <div
                                                                     class="input-group input-group-day input-group--sunday">
                                                                     <div class="checkbox-wrap">
                                                                         <input
@@ -525,7 +529,7 @@
                                                                                 id="endTime" aria-describedby="endTime">
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                </div> -->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -692,7 +696,8 @@
         </div>
     </main>
 
-
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.11.0/b-2.0.0/sl-1.3.3/datatables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.2/b-2.0.0/datatables.min.js"></script>
     <script src="./js/plugins/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
@@ -701,7 +706,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
         integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
         crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script src="./js/plugins/jquery.serialize-object.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="./js/script.js"></script>
 </body>

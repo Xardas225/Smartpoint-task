@@ -109,92 +109,93 @@ $('.select2Platform').select2();
 
 
 
-// formAddSite.addEventListener('submit', (e) => {
-//     e.preventDefault();
-
-
-
-//     // const sitePlatform = formAddSite.querySelector('[name="sitePlatform"]'),
-//     //       siteLink = formAddSite.querySelector('[name="siteLink"]'),
-//     //       siteName = formAddSite.querySelector('[name="siteName"]')
-
-
-//     // let siteData = {
-//     //     platform: sitePlatform.value,
-//     //     link: siteLink.value,
-//     //     name: siteName.value,
-//     // };
-
-//     const fields = formAddSite.querySelectorAll('input, select');
-//     const siteData = {};
-
-//     fields.forEach(field => {
-//         const { name, value } = field;
-
-//         siteData[name] = value;
-//     });
-
-
-
-//     console.log(siteData);
-
-
-// });
-
-
-
-
-
-
 
 
 const generalForm = document.querySelector('#generalForm');
 
-$("#generalForm").validate({
-    submitHandler: function (e) {
-        $.ajax({
-            url: '/index.php',
-            method: 'post',
-            dataType: 'html',
-            // data: { text: 'Текст' },
-            success: function (data) {
+generalForm.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-                const formData = new FormData(generalForm);
-                const generalData = Object.fromEntries(formData.entries());
+    let name = this.name.value
+    timezone = this.timezone.value
+    key = this.key.value
+    phones = this.phones.value.split(',')
 
-                console.log(generalData);
-            }
-        });
-    },
-    ignore: [],
-    rules: {
-        systemName: {
-            required: true,
-            minlength: 4
-        },
-        timezone: {
-            required: true
-        },
-        apiKey: {
-            required: true,
-            minlength: 30
-        },
-        phone: {
-            required: true,
-            minlength: 11
+    let data = {
+        "name": name,
+        "timezone": timezone,
+        "key": key,
+        "phones": phones,
+        "Working Time": {
+            "0": [
+                {
+                    "from:": this.from[0].value,
+                    "to": this.from[0].value
+                }
+            ],
+            "1": [
+                {
+                    "from:": this.from[1].value,
+                    "to": this.from[1].value
+                }
+            ],
+            "2": [
+                {
+                    "from:": this.from[2].value,
+                    "to": this.from[2].value
+                }
+            ],
+            "3": [
+                {
+                    "from:": this.from[3].value,
+                    "to": this.from[3].value
+                }
+            ],
         }
-    }
+
+    };
+
+    console.log(JSON.stringify(data))
 });
 
-// generalForm.addEventListener('submit', (e) => {
-//     e.preventDefault();
 
 
-//     const formData = new FormData(generalForm);
-//     const generalData = Object.fromEntries(formData.entries());
 
-//     console.log(generalData);
+
+// $("#generalForm").validate({
+//     submitHandler: function (e) {
+//         $.ajax({
+//             url: '/index.php',
+//             method: 'post',
+//             dataType: 'html',
+//             // data: { text: 'Текст' },
+//             success: function createExport() {
+
+
+
+//             }
+//         });
+//     },
+//     ignore: [],
+//     rules: {
+//         name: {
+//             required: true,
+//             minlength: 4
+//         },
+//         timezone: {
+//             required: true
+//         },
+//         key: {
+//             required: true,
+//             minlength: 30
+//         },
+//         phones: {
+//             required: true,
+//             minlength: 11
+//         }
+//     }
 // });
+
 
 
 // Данные для таблицы "Служебные контакты"
@@ -255,6 +256,12 @@ $('#table').DataTable({
 
 });
 
+
+// $('#table tbody').on('click', 'td', function() {
+//     var colIndex = table.cell(this).index().column;
+//     var rowIndex = table.cell(this).index().row;
+//     table.cell(rowIndex, colIndex).data("new")
+//   });
 
 
 
