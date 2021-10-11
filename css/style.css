@@ -1,5 +1,8 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
 .navbar{
-    background-color: #fff;
+    background-color: #f5f5f5;
     border-bottom: 0.05rem solid rgba(0,0,0,.125);
 }
 .navbar-logo {
@@ -16,11 +19,30 @@
     max-width: 15rem;
     min-height: 100vh;
     border-right: 0.05rem solid rgba(0,0,0,.125);
+    background-color: #f5f5f5;
+}
+.accordion-header {
+    background-color: #f5f5f5 !important;
+}
+.accordion-button {
+    background-color: #f5f5f5 !important ;
 }
 .accordion-button:focus {
     border-color: transparent !important;
     box-shadow: none !important;
-    background-color: transparent !important;
+    background-color: #f5f5f5 !important;
+}
+
+.accordion-button:not(.collapsed)::after {
+    transform: rotate(90deg) translate(4px, 8px) !important;
+    background-image: url(../images/chevron-down-solid.svg) !important;
+    background-size: .7rem !important;
+}
+
+
+.accordion-button::after {
+    background-image: url(../images/chevron-down-solid.svg) !important;
+    background-size: .7rem !important;
 }
 .list-group__item{
     list-style-type: none;
@@ -113,12 +135,20 @@ label{
 .nav-link:focus, .nav-link:hover{
     color: #3a3737 !important;
 }
+.bootstrap-tagsinput {
+    height: 2.7rem !important;
+    padding: 9px 6px !important;
+} 
 .bootstrap-tagsinput .tag {
     color: #211f1f !important;
+    padding: .3rem;
     font-size: .9rem;
-    border: .05rem solid #cebfbf;
-    background-color: #cebfbf;
+    border: .05rem solid #ebe9e9;
+    background-color: #ebe9e9;
     border-radius: .3rem;
+}
+.bootstrap-tagsinput > input {
+    border: none !important;
 }
 .timetable__interval{
     display: flex;
@@ -201,8 +231,8 @@ input[type="time"]{
     border: 0.1rem solid rgba(0,0,0,0.125);
 }
 .form-check-input:checked{
-    background-color: #ca4054 !important;
-    border-color: #ca4054 !important;
+    background-color: #f76c80 !important;
+    border-color: #f76c80!important;
 }
 .input-group-day > .btn-primary:focus{
     background: transparent !important;
@@ -229,12 +259,13 @@ input[type="time"]{
     
 }
 .btn-save{
-    background-color: #ca4054 !important;
-    border-color: #ca4054 !important;
+    background-color: #f76c80 !important;
+    border-color: #f76c80 !important;
+    box-shadow: none !important;
 }
 .btn-save:hover{
-    background-color: #ca4054 !important;
-    border-color: #ca4054 !important;
+    background-color: #f76c80 !important;
+    border-color: #f76c80 !important;
     color: #fff !important;
 }
 
@@ -242,7 +273,7 @@ input[type="time"]{
 .btn-addSite__container > .btn-primary {
     background-color: transparent !important;
     border-color: transparent !important;
-    color: #ca4054 !important;
+    color: #f76c80 !important;
     font-size: 1rem !important;
     font-weight: bold;
     position: relative;
@@ -252,11 +283,21 @@ input[type="time"]{
 .btn-addSite__container > .btn-primary::after{
     position: absolute;
     content: '+';
-    color: #ca4054 !important;
+    color: #f76c80 !important;
     font-size: 1.5rem;
     top: 0;
     left: 0;
     bottom: 0;
+}
+.btn-addSite {
+    background-color: #f76c80 !important;
+    border: #f76c80 !important;
+    border-radius: 5px;
+    padding: 8px;
+}
+.btn-secondary {
+    background-color: #fff !important;
+    color: #6c757d !important;
 }
 
 .btn-addTime > img {
@@ -278,4 +319,31 @@ input[type="time"]{
 
 .select2-container.select2-container--default.select2-container--open  {
     z-index: 5000;
-  }
+}
+
+
+.btn-site-save {
+    background-color: #f76c80 !important;
+    border: #f76c80 !important;
+    box-shadow: none !important;
+}
+
+.btn:hover {
+    opacity: .8;
+}
+
+input.error {
+    border: 1px solid #f76c80 !important;
+}
+input[type=time].error label.error  {
+    display: none;
+}
+
+label.error {
+    color: red;
+}
+
+.img-flag {
+    max-width: 20px;
+    max-height: 20px;
+}

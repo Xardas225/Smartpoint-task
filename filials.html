@@ -17,6 +17,11 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.11.0/b-2.0.0/sl-1.3.3/datatables.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -287,13 +292,12 @@
                                                                     <div class="addTime addTimeMonday">
                                                                         <div class="input-group input-group-extraday">
                                                                             <label for="from">с</label>
-                                                                            <input name="from"
-                                                                                type="time"
+                                                                            <input name="fromExtra" type="time"
                                                                                 class="form-control form-control--startTime"
                                                                                 id="startTimeMondayExtra"
                                                                                 aria-describedby="startTime">
                                                                             <label for="to">по</label>
-                                                                            <input name="to" type="time"
+                                                                            <input name="toExtra" type="time"
                                                                                 class="form-control form-control--endTime"
                                                                                 id="endTimeMondayExtra"
                                                                                 aria-describedby="endTime">
@@ -326,22 +330,20 @@
                                                                     </button>
                                                                     <div class="addTime addTimeTuesday">
                                                                         <div class="input-group input-group-extraday">
-                                                                            <label for="for">с</label>
-                                                                            <input type="time"
-                                                                                name="for"
+                                                                            <label for="from">с</label>
+                                                                            <input type="time" name="fromExtra"
                                                                                 class="form-control form-control--startTime"
                                                                                 id="startTime"
                                                                                 aria-describedby="startTime">
                                                                             <label for="to">по</label>
-                                                                            <input type="time"
-                                                                                name="to"
+                                                                            <input type="time" name="toExtra"
                                                                                 class="form-control form-control--endTime"
                                                                                 id="endTime" aria-describedby="endTime">
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <!-- Среда -->
-                                                                <!-- <div
+                                                                <div
                                                                     class="input-group input-group-day input-group--wednesday">
                                                                     <div class="checkbox-wrap">
                                                                         <input
@@ -352,12 +354,12 @@
                                                                     <span class="span-day span-wednesday">
                                                                         Среда
                                                                     </span>
-                                                                    <label for="startTime">с</label>
-                                                                    <input type="time"
+                                                                    <label for="from">с</label>
+                                                                    <input type="time" name="from"
                                                                         class="form-control form-control--startTime"
                                                                         id="startTime" aria-describedby="startTime">
-                                                                    <label for="endTime">по</label>
-                                                                    <input type="time"
+                                                                    <label for="to">по</label>
+                                                                    <input type="time" name="to"
                                                                         class="form-control form-control--endTime"
                                                                         id="endTime" aria-describedby="endTime">
                                                                     <button type="button"
@@ -366,20 +368,20 @@
                                                                     </button>
                                                                     <div class="addTime addTimeWednesday">
                                                                         <div class="input-group input-group-extraday">
-                                                                            <label for="startTime">с</label>
-                                                                            <input type="time"
+                                                                            <label for="from">с</label>
+                                                                            <input type="time" name="fromExtra"
                                                                                 class="form-control form-control--startTime"
                                                                                 id="startTime"
                                                                                 aria-describedby="startTime">
-                                                                            <label for="endTime">по</label>
-                                                                            <input type="time"
+                                                                            <label for="to">по</label>
+                                                                            <input type="time" name="toExtra"
                                                                                 class="form-control form-control--endTime"
                                                                                 id="endTime" aria-describedby="endTime">
                                                                         </div>
                                                                     </div>
-                                                                </div> -->
+                                                                </div>
                                                                 <!-- Четверг -->
-                                                                <!-- <div
+                                                                <div
                                                                     class="input-group input-group-day input-group--thursday">
                                                                     <div class="checkbox-wrap">
                                                                         <input
@@ -390,12 +392,12 @@
                                                                     <span class="span-day span-thursday">
                                                                         Четверг
                                                                     </span>
-                                                                    <label for="startTime">с</label>
-                                                                    <input type="time"
+                                                                    <label for="from">с</label>
+                                                                    <input type="time" name="from"
                                                                         class="form-control form-control--startTime"
                                                                         id="startTime" aria-describedby="startTime">
-                                                                    <label for="endTime">по</label>
-                                                                    <input type="time"
+                                                                    <label for="to">по</label>
+                                                                    <input type="time" name="to"
                                                                         class="form-control form-control--endTime"
                                                                         id="endTime" aria-describedby="endTime">
                                                                     <button type="button"
@@ -404,20 +406,20 @@
                                                                     </button>
                                                                     <div class="addTime btn-addTime addTimeThursday">
                                                                         <div class="input-group input-group-extraday">
-                                                                            <label for="startTime">с</label>
-                                                                            <input type="time"
+                                                                            <label for="from">с</label>
+                                                                            <input type="time" name="fromExtra"
                                                                                 class="form-control form-control--startTime"
                                                                                 id="startTime"
                                                                                 aria-describedby="startTime">
-                                                                            <label for="endTime">по</label>
-                                                                            <input type="time"
+                                                                            <label for="to">по</label>
+                                                                            <input type="time" name="toExtra"
                                                                                 class="form-control form-control--endTime"
                                                                                 id="endTime" aria-describedby="endTime">
                                                                         </div>
                                                                     </div>
-                                                                </div> -->
+                                                                </div>
                                                                 <!-- Пятница -->
-                                                                <!-- <div
+                                                                <div
                                                                     class="input-group input-group-day checkbox-time input-group--friday">
                                                                     <div class="checkbox-wrap">
                                                                         <input
@@ -428,12 +430,12 @@
                                                                     <span class="span-day span-friday">
                                                                         Пятница
                                                                     </span>
-                                                                    <label for="startTime">с</label>
-                                                                    <input type="time"
+                                                                    <label for="from">с</label>
+                                                                    <input type="time" name="from"
                                                                         class="form-control form-control--startTime"
                                                                         id="startTime" aria-describedby="startTime">
-                                                                    <label for="endTime">по</label>
-                                                                    <input type="time"
+                                                                    <label for="to">по</label>
+                                                                    <input type="time" name="to"
                                                                         class="form-control form-control--endTime"
                                                                         id="endTime" aria-describedby="endTime">
                                                                     <button type="button"
@@ -442,20 +444,20 @@
                                                                     </button>
                                                                     <div class="addTime addTimeFriday">
                                                                         <div class="input-group input-group-extraday">
-                                                                            <label for="startTime">с</label>
-                                                                            <input type="time"
+                                                                            <label for="from">с</label>
+                                                                            <input type="time" name="fromExtra"
                                                                                 class="form-control form-control--startTime"
                                                                                 id="startTime"
                                                                                 aria-describedby="startTime">
-                                                                            <label for="endTime">по</label>
-                                                                            <input type="time"
+                                                                            <label for="to">по</label>
+                                                                            <input type="time" name="toExtra"
                                                                                 class="form-control form-control--endTime"
                                                                                 id="endTime" aria-describedby="endTime">
                                                                         </div>
                                                                     </div>
-                                                                </div> -->
+                                                                </div>
                                                                 <!-- Суббота -->
-                                                                <!-- <div
+                                                                <div
                                                                     class="input-group input-group-day input-group--saturday">
                                                                     <div class="checkbox-wrap">
                                                                         <input
@@ -466,12 +468,12 @@
                                                                     <span class="span-day span-saturday">
                                                                         Суббота
                                                                     </span>
-                                                                    <label for="startTime">с</label>
-                                                                    <input type="time"
+                                                                    <label for="from">с</label>
+                                                                    <input type="time" name="from"
                                                                         class="form-control form-control--startTime"
                                                                         id="startTime" aria-describedby="startTime">
-                                                                    <label for="endTime">по</label>
-                                                                    <input type="time"
+                                                                    <label for="to">по</label>
+                                                                    <input type="time" name="to"
                                                                         class="form-control form-control--endTime"
                                                                         id="endTime" aria-describedby="endTime">
                                                                     <button type="button"
@@ -480,20 +482,20 @@
                                                                     </button>
                                                                     <div class="addTime addTimeSaturday">
                                                                         <div class="input-group input-group-extraday">
-                                                                            <label for="startTime">с</label>
-                                                                            <input type="time"
+                                                                            <label for="from">с</label>
+                                                                            <input type="time" name="fromExtra"
                                                                                 class="form-control form-control--startTime"
                                                                                 id="startTime"
                                                                                 aria-describedby="startTime">
-                                                                            <label for="endTime">по</label>
-                                                                            <input type="time"
+                                                                            <label for="to">по</label>
+                                                                            <input type="time" name="toExtra"
                                                                                 class="form-control form-control--endTime"
                                                                                 id="endTime" aria-describedby="endTime">
                                                                         </div>
                                                                     </div>
-                                                                </div> -->
+                                                                </div>
                                                                 <!-- Воскресенье -->
-                                                                <!-- <div
+                                                                <div
                                                                     class="input-group input-group-day input-group--sunday">
                                                                     <div class="checkbox-wrap">
                                                                         <input
@@ -504,12 +506,12 @@
                                                                     <span class="span-day span-sunday">
                                                                         Воскресенье
                                                                     </span>
-                                                                    <label for="startTime">с</label>
-                                                                    <input type="time"
+                                                                    <label for="from">с</label>
+                                                                    <input type="time" name="from"
                                                                         class="form-control form-control--startTime"
                                                                         id="startTime" aria-describedby="startTime">
-                                                                    <label for="endTime">по</label>
-                                                                    <input type="time"
+                                                                    <label for="to">по</label>
+                                                                    <input type="time" name="to"
                                                                         class="form-control form-control--endTime"
                                                                         id="endTime" aria-describedby="endTime">
                                                                     <button type="button"
@@ -518,18 +520,18 @@
                                                                     </button>
                                                                     <div class="addTime addTimeSunday">
                                                                         <div class="input-group input-group-extraday">
-                                                                            <label for="startTime">с</label>
-                                                                            <input type="time"
+                                                                            <label for="from">с</label>
+                                                                            <input type="time" name="fromExtra"
                                                                                 class="form-control form-control--startTime"
                                                                                 id="startTime"
                                                                                 aria-describedby="startTime">
-                                                                            <label for="endTime">по</label>
-                                                                            <input type="time"
+                                                                            <label for="to">по</label>
+                                                                            <input type="time" name="toExtra"
                                                                                 class="form-control form-control--endTime"
                                                                                 id="endTime" aria-describedby="endTime">
                                                                         </div>
                                                                     </div>
-                                                                </div> -->
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -589,14 +591,11 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="mb-3">
-                                                                <label for="platform" class="form-label">Выберите
+                                                                <label for="id" class="form-label">Выберите
                                                                     платформу</label>
-                                                                <select name="platform" id="select2Platform"
-                                                                    class="form-select select2Platform form-select-lg mb-3"
+                                                                <select name="id" id="select2Platform"
+                                                                    class="select2Platform form-select  mb-3"
                                                                     aria-label="select">
-                                                                    <option id="1" value="google">Google</option>
-                                                                    <option id="2" value="yandex">Yandex</option>
-                                                                    <option id="3" value="flamp">Flamp</option>
                                                                 </select>
                                                             </div>
                                                             <div class="mb-3">
