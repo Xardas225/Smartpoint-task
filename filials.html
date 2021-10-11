@@ -576,7 +576,7 @@
                                             </div>
                                         </form>
 
-                                        <!-- Modal -->
+                                        <!-- Модальное окно - добавление нового сайта -->
                                         <form action="#" id="form-addSite" method="POST">
                                             <div class="modal modalAddSite fade" id="addSite"
                                                 aria-labelledby="addSiteLabel" aria-hidden="true">
@@ -594,9 +594,7 @@
                                                                 <label for="id" class="form-label">Выберите
                                                                     платформу</label>
                                                                 <select name="id" id="select2Platform"
-                                                                    class="select2Platform form-select  mb-3"
-                                                                    aria-label="select">
-                                                                </select>
+                                                                    style="width: 100%;"></select>
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="link" class="form-label">Укажите
@@ -609,11 +607,14 @@
                                                                 <input name="title" type="text" class="form-control"
                                                                     id="siteName" aria-describedby="siteName">
                                                             </div>
+                                                            <div class="mb-3">
+                                                                <input name="hidden" type="hidden" class="form-control">
+                                                            </div>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="submit"
                                                                 class="btn-addSite btn-primary">Принять</button>
-                                                            <button type="button" class="btn btn-secondary"
+                                                            <button type="submit" class="btn btn-closeDataTableModal btn-secondary"
                                                                 data-bs-dismiss="modal">Отмена</button>
                                                         </div>
                                                     </div>
@@ -681,6 +682,29 @@
                         </div>
 
 
+                    </div>
+
+                    <div class="modal modalDataTable fade" id="modalDataTable" aria-labelledby="dataTableTitle"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="dataTableTitle">Изменить контакт
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body modal-body-dataTable">
+
+                                </div>
+                                    
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn-addSite btn-primary">Принять</button>
+                                    <button type="submit" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Отмена</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
 

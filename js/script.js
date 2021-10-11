@@ -16,11 +16,11 @@ $('document').ready(function () {
     });
 
     // Функция для рандома Апи-ключа
-    function str_rand() {
+    function str_rand(num) {
         var result = '';
         var words = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
         var max_position = words.length - 1;
-        for (i = 0; i < 30; ++i) {
+        for (i = 0; i < num; ++i) {
             position = Math.floor(Math.random() * max_position);
             result = result + words.substring(position, position + 1);
         }
@@ -28,7 +28,7 @@ $('document').ready(function () {
     }
 
     $('.card-system__form-api__btn-random').on('click', function () {
-        $('#apiKey').val(str_rand());
+        $('#apiKey').val(str_rand(30));
     });
 
 
@@ -144,13 +144,8 @@ $('document').ready(function () {
                 required: true,
                 digits: true
             },
-            from: {
-                required: true
-            },
-            to: {
-                required: true
-            }
         },
+        ignore: [],
         messages: {
             name: {
                 required: "Введите имя"
@@ -164,12 +159,6 @@ $('document').ready(function () {
             },
             phones: {
                 required: "Введите номер телефона"
-            },
-            from: {
-                required: false
-            },
-            to: {
-                required: false
             }
         }
     });
@@ -219,7 +208,7 @@ $('document').ready(function () {
     };
 
     // Модальное окно с добавлением сайта
-    $('.select2Platform').select2({
+    $('#select2Platform').select2({
         data: DataPlatforms,
         templateResult: formatStateModal,
         templateSelection: formatStateModal,
@@ -246,10 +235,13 @@ $('document').ready(function () {
 
 
     // Добавление нового сайта в select2
+
+    let formAddSite = document.querySelector('#form-addSite');
+    let buttonAddSite = document.querySelector('.btn-addSite');
+    let exportDataSite = [];
+
     (function addSites() {
 
-        let formAddSite = document.querySelector('#form-addSite');
-        let buttonAddSite = document.querySelector('.btn-addSite');
 
         buttonAddSite.addEventListener('click', (e) => {
             e.preventDefault();
@@ -261,13 +253,14 @@ $('document').ready(function () {
                 siteData[name] = value;
             });
 
-            var newOption = new Option(siteData.title, siteData.id, siteData.link, false, false);
+            var newOption = new Option(siteData.title, siteData.id, siteData.link, siteData.hidden = str_rand(7), false, false);
             $('.form-select-sites').append(newOption).trigger('change');
 
             openModalAddSite.hide();
             formAddSite.reset();
+            exportDataSite.push(siteData)
 
-            console.log(siteData);
+            console.log(JSON.stringify(exportDataSite));
 
         });
 
@@ -278,18 +271,7 @@ $('document').ready(function () {
 
     formSiteSave.addEventListener('submit', (e) => {
         e.preventDefault();
-
-
-        const fields = formSiteSave.querySelectorAll('input, select');
-        const siteSaveData = {};
-        
-        fields.forEach(field => {
-            debugger;
-            const { name, value } = field;
-
-            siteSaveData[name] = value;
-        });
-        console.log(siteSaveData);
+        console.log(JSON.stringify(exportDataSite))
     });
 
 
@@ -302,7 +284,7 @@ $('document').ready(function () {
             'address': 'Настроено',
             'description': 'Основной модуль',
             'verification': '',
-            'editing': '<button></button>'
+            'editing': '<button class="table__button"></button>'
         },
 
         {
@@ -311,7 +293,7 @@ $('document').ready(function () {
             'address': 'ii@google.com',
             'description': 'Основной модуль',
             'verification': '',
-            'editing': '<button></button>'
+            'editing': '<button class="table__button"></button>'
         },
 
         {
@@ -320,7 +302,7 @@ $('document').ready(function () {
             'address': 'Настроено',
             'description': 'Подсистема мониторинга',
             'verification': '',
-            'editing': '<button></button>'
+            'editing': '<button class="table__button"></button>'
         },
 
         {
@@ -329,11 +311,11 @@ $('document').ready(function () {
             'address': 'Не подтверждён',
             'description': 'Мимо проходил',
             'verification': '29-6824',
-            'editing': '<button></button>'
+            'editing': '<button class="table__button"></button>'
         }
     ];
 
-    $('#table').DataTable({
+    let table = $('#table').DataTable({
         data: tableData,
         dom: 'Bfrtip',
         columns: [
@@ -345,16 +327,67 @@ $('document').ready(function () {
             { data: 'editing' }
         ],
         select: true,
-        buttons: [
-            'create'
-        ]
 
 
     });
 
 
+    // Привязка выбранного события к строке
+    $('#table tbody').on('click', 'tr', function () {
+        console.log("Привязка выбранного события к строке");
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+        }
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    });
 
-   
+    var modalDataTable = new bootstrap.Modal(document.querySelector('#modalDataTable'))
+
+
+    // Привязка события клика к кнопке
+    $(".table__button").click(function (e) {
+        e.preventDefault();
+
+        console.log("Привязка события клика к кнопке");
+        var name = table.row('.selected').data().name;
+        var desc = table.row('.selected').data().description;
+        alert("Содержимое первого столбца:" + name + "; содержимое второго столбца:" + desc);
+
+
+        modalDataTable.show();
+        
+        let bodyModalDataTable = document.querySelector('.modal-body-dataTable');
+
+
+        (function AddinputDataTable() {
+            let labelInputName = document.createElement('label')
+            let inputName = document.createElement('input');
+            let labelInputDesc = document.createElement('label')
+            let inputDesc = document.createElement('input');
+
+
+            labelInputName.textContent = 'Укажите название';
+            inputName.value = name;
+            labelInputDesc.textContent = 'Описание'
+            inputDesc.value = desc;
+
+            bodyModalDataTable.appendChild(labelInputName)
+            bodyModalDataTable.appendChild(inputName)
+            bodyModalDataTable.appendChild(labelInputDesc)
+            bodyModalDataTable.appendChild(inputDesc)
+
+            inputName.classList.add("form-control", "mb-3", "name");
+            inputDesc.classList.add("form-control", "mb-3", "desc");
+
+            console.log(bodyModalDataTable.childNodes)
+
+            
+        })();
+    });
+
 
 
 });
