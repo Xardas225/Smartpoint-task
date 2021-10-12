@@ -84,43 +84,43 @@ $('document').ready(function () {
                     "0": [
                         {
                             "from:": event.target.from[0].value,
-                            "to": event.target.from[0].value
+                            "to": event.target.to[0].value
                         }
                     ],
                     "1": [
                         {
                             "from:": event.target.from[1].value,
-                            "to": event.target.from[1].value
+                            "to": event.target.to[1].value
                         }
                     ],
                     "2": [
                         {
                             "from:": event.target.from[2].value,
-                            "to": event.target.from[2].value
+                            "to": event.target.to[2].value
                         }
                     ],
                     "3": [
                         {
                             "from:": event.target.from[3].value,
-                            "to": event.target.from[3].value
+                            "to": event.target.to[3].value
                         }
                     ],
                     "4": [
                         {
                             "from:": event.target.from[4].value,
-                            "to": event.target.from[4].value
+                            "to": event.target.to[4].value
                         }
                     ],
                     "5": [
                         {
                             "from:": event.target.from[5].value,
-                            "to": event.target.from[5].value
+                            "to": event.target.to[5].value
                         }
                     ],
                     "6": [
                         {
                             "from:": event.target.from[6].value,
-                            "to": event.target.from[6].value
+                            "to": event.target.to[6].value
                         }
                     ],
                 }
@@ -142,7 +142,6 @@ $('document').ready(function () {
             },
             phones: {
                 required: true,
-                digits: true
             },
         },
         ignore: [],
@@ -220,7 +219,7 @@ $('document').ready(function () {
             return platform.name;
         }
         var $state = $(
-            '<span><img src="' + platform.img + '" style="max-width: 20px; max-height: 20px;" class="img-flag" /> ' + platform.name + '</span>'
+            '<span><img src="' + platform.img + '" style="max-width: 25px; max-height: 25px;" class="img-flag" /> ' + platform.name + '</span>'
         );
         return $state;
     };
@@ -350,17 +349,16 @@ $('document').ready(function () {
     // Привязка события клика к кнопке
     $(".table__button").click(function (e) {
         e.preventDefault();
+        
 
         console.log("Привязка события клика к кнопке");
         var name = table.row('.selected').data().name;
         var desc = table.row('.selected').data().description;
-        alert("Содержимое первого столбца:" + name + "; содержимое второго столбца:" + desc);
-
 
         modalDataTable.show();
         
         let bodyModalDataTable = document.querySelector('.modal-body-dataTable');
-
+        // e.target.parentElement.parentElement.classList.add('selected');
 
         (function AddinputDataTable() {
             let labelInputName = document.createElement('label')
@@ -368,24 +366,33 @@ $('document').ready(function () {
             let labelInputDesc = document.createElement('label')
             let inputDesc = document.createElement('input');
 
+            if(bodyModalDataTable.hasAttributes)
 
             labelInputName.textContent = 'Укажите название';
             inputName.value = name;
             labelInputDesc.textContent = 'Описание'
             inputDesc.value = desc;
 
-            bodyModalDataTable.appendChild(labelInputName)
-            bodyModalDataTable.appendChild(inputName)
-            bodyModalDataTable.appendChild(labelInputDesc)
-            bodyModalDataTable.appendChild(inputDesc)
+            bodyModalDataTable.appendChild(labelInputName);
+            bodyModalDataTable.appendChild(inputName);
+            bodyModalDataTable.appendChild(labelInputDesc);
+            bodyModalDataTable.appendChild(inputDesc);
 
             inputName.classList.add("form-control", "mb-3", "name");
             inputDesc.classList.add("form-control", "mb-3", "desc");
 
-            console.log(bodyModalDataTable.childNodes)
-
             
         })();
+
+        $('.btn-addDataTable').click(function(e) {
+            e.preventDefault();
+           
+            modalDataTable.hide();
+            
+            
+        })
+
+
     });
 
 

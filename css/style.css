@@ -23,10 +23,47 @@
 }
 .accordion-header {
     background-color: #f5f5f5 !important;
+    padding-left: 25px !important;
 }
+
+.accordion-header:hover {
+    opacity: .85;
+}
+
 .accordion-button {
     background-color: #f5f5f5 !important ;
 }
+
+.accordion-button::before {
+    position: absolute;
+    content: '';
+    left: -2px;
+    top: 18px;
+    background-size: 14px;
+    width: 14px;
+    height: 14px;
+}
+
+.button-playgrounds::before {
+    background-image: url(../images/star-solid.svg);
+    background-repeat: no-repeat;
+}
+
+.button-polls::before {
+    background-image: url(../images/bars-solid.svg);
+    background-repeat: no-repeat;
+}
+
+.button-members::before {
+    background-image: url(../images/user-friends-solid.svg);
+    background-repeat: no-repeat;
+}
+
+.button-settings::before {
+    background-image: url(../images/cog-solid.svg);
+    background-repeat: no-repeat;
+}
+
 .accordion-button:focus {
     border-color: transparent !important;
     box-shadow: none !important;
@@ -374,4 +411,8 @@ label.error {
 .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b , 
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
     border-width: 6px 5px 0 5px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    border-right: none !important;
 }
