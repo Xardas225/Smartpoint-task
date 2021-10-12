@@ -314,86 +314,128 @@ $('document').ready(function () {
         }
     ];
 
-    let table = $('#table').DataTable({
-        data: tableData,
-        dom: 'Bfrtip',
-        columns: [
-            { data: 'name' },
-            { data: 'contactType' },
-            { data: 'address' },
-            { data: 'description' },
-            { data: 'verification' },
-            { data: 'editing' }
-        ],
-        select: true,
 
 
-    });
+
+    let table = $('#table').DataTable(
+        {
+            data: tableData,
+            dom: 'Bfrtip',
+            columns: [
+                { data: 'name' },
+                { data: 'contactType' },
+                { data: 'address' },
+                { data: 'description' },
+                { data: 'verification' },
+                {
+                    data: function () {
+                        return "<button type='button' class='btn btnChangeDataTable btn-md' data-toggle='modal' data-target='#modalDataTable'> Edit </button>"
+                    }
+                }
+            ],
+            select: true,
+
+        });
 
 
     // Привязка выбранного события к строке
-    $('#table tbody').on('click', 'tr', function () {
-        console.log("Привязка выбранного события к строке");
-        if ($(this).hasClass('selected')) {
-            $(this).removeClass('selected');
+    $('#table').on('click', 'tr', '.btnChangeDataTable', function (e) {
+
+        var name = table.row(e.target.parentElement).data().name;
+        var desc = table.row(e.target.parentElement).data().description;
+        var address = table.row(e.target.parentElement).data().address;
+
+        function addedDataModal() {
+            return `<div class="mb-3"> 
+                        <label for="name" class="form-label"> Укажите название </label>
+                        <input name="name" type="text" value="${name}" class="form-control" id="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Описание</label>
+                        <input name="description" type="text" value="${desc}" class="form-control" id="description">
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Адрес</label>
+                        <input name="address" type="text" value="${address}" class="form-control" id="address">
+                    </div>`
         }
-        else {
-            table.$('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
-        }
+
+        let dataForModal = addedDataModal();
+
+        // $('.modal-body-dataTable').append(dataForModal).html();
+
+
+
+        $('#modalDataTable').on('show.bs.modal', function (e) {
+            $('.modal-body-dataTable').append(dataForModal).html();
+        });
+        $('#modalDataTable').modal('show');
+
+        $('#modalDataTable').on('click', '.btn-cancelDataTable', function (e) {
+            $('#modalDataTable .modal-body-dataTable').empty()
+        });
+
+        table.row(e.target.parentElement).data().name = $('.modal-body-dataTable input[name=name]').val();
+        table.draw();
     });
 
-    var modalDataTable = new bootstrap.Modal(document.querySelector('#modalDataTable'))
 
 
-    // Привязка события клика к кнопке
-    $(".table__button").click(function (e) {
-        e.preventDefault();
-        
+    // '<div class="mb-3">' +
+    // ' <label for="name" class="form-label"> Укажите название </label>' +
+    // '<input name="name" type="text" value="${}" class="form-control" id="name" aria-describedby="siteLink">'
 
-        console.log("Привязка события клика к кнопке");
-        var name = table.row('.selected').data().name;
-        var desc = table.row('.selected').data().description;
-
-        modalDataTable.show();
-        
-        let bodyModalDataTable = document.querySelector('.modal-body-dataTable');
-        // e.target.parentElement.parentElement.classList.add('selected');
-
-        (function AddinputDataTable() {
-            let labelInputName = document.createElement('label')
-            let inputName = document.createElement('input');
-            let labelInputDesc = document.createElement('label')
-            let inputDesc = document.createElement('input');
-
-            if(bodyModalDataTable.hasAttributes)
-
-            labelInputName.textContent = 'Укажите название';
-            inputName.value = name;
-            labelInputDesc.textContent = 'Описание'
-            inputDesc.value = desc;
-
-            bodyModalDataTable.appendChild(labelInputName);
-            bodyModalDataTable.appendChild(inputName);
-            bodyModalDataTable.appendChild(labelInputDesc);
-            bodyModalDataTable.appendChild(inputDesc);
-
-            inputName.classList.add("form-control", "mb-3", "name");
-            inputDesc.classList.add("form-control", "mb-3", "desc");
-
-            
-        })();
-
-        $('.btn-addDataTable').click(function(e) {
-            e.preventDefault();
-           
-            modalDataTable.hide();
-            
-            
-        })
+    // var modalDataTable = new bootstrap.Modal(document.querySelector('#modalDataTable'))
 
 
-    });
+    // // Привязка события клика к кнопке
+    // $(".table__button").click(function (e) {
+    //     e.preventDefault();
+
+
+    //     console.log("Привязка события клика к кнопке");
+    //     var name = table.row('.selected').data().name;
+    //     var desc = table.row('.selected').data().description;
+
+    //     modalDataTable.show();
+
+    //     let bodyModalDataTable = document.querySelector('.modal-body-dataTable');
+    //     // e.target.parentElement.parentElement.classList.add('selected');
+
+    //     (function AddinputDataTable() {
+    //         let labelInputName = document.createElement('label')
+    //         let inputName = document.createElement('input');
+    //         let labelInputDesc = document.createElement('label')
+    //         let inputDesc = document.createElement('input');
+
+    //         if (bodyModalDataTable.hasAttributes)
+
+    //             labelInputName.textContent = 'Укажите название';
+    //         inputName.value = name;
+    //         labelInputDesc.textContent = 'Описание'
+    //         inputDesc.value = desc;
+
+    //         bodyModalDataTable.appendChild(labelInputName);
+    //         bodyModalDataTable.appendChild(inputName);
+    //         bodyModalDataTable.appendChild(labelInputDesc);
+    //         bodyModalDataTable.appendChild(inputDesc);
+
+    //         inputName.classList.add("form-control", "mb-3", "name");
+    //         inputDesc.classList.add("form-control", "mb-3", "desc");
+
+
+    //     })();
+
+    //     $('.btn-addDataTable').click(function (e) {
+    //         e.preventDefault();
+
+    //         modalDataTable.hide();
+
+
+    //     })
+
+
+    // });
 
 
 
