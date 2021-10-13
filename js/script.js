@@ -333,20 +333,19 @@ $('document').ready(function () {
                     }
                 }
             ],
-            select: true,
+            select: true
 
         });
 
 
     // Привязка выбранного события к строке
     $('#table').on('click', '.btnChangeDataTable', 'tr', function (e) {
-       
-        var name = table.row(e.target.parentElement).data().name;
-        var desc = table.row(e.target.parentElement).data().description;
-        var address = table.row(e.target.parentElement).data().address;
-        var contactType = table.row(e.target.parentElement).data().contactType;
 
-        $(e.target.parentElement.parentElement).addClass('selected');
+        var row = table.row(e.target.parentElement).data();
+        var name = row.name;
+        desc = row.description;
+        address = row.address;
+        contactType = row.contactType;
 
         function addedDataModal() {
             return `<div class="mb-3"> 
@@ -361,7 +360,7 @@ $('document').ready(function () {
                         <label for="address" class="form-label">Адрес</label>
                         <input name="address" type="text" value="${address}" class="form-control" id="address">
                     </div>`
-        }
+        };
         function addedDataModalWithTelegram() {
             return `<div class="mb-3"> 
                         <label for="name" class="form-label"> Укажите название </label>
@@ -371,41 +370,49 @@ $('document').ready(function () {
                         <label for="description" class="form-label">Описание</label>
                         <input name="description" type="text" value="${desc}" class="form-control" id="description">
                     </div>`
-        }
+        };
 
-
-        let dataForModal = addedDataModal();
-        let dataForModalWithTelegram = addedDataModalWithTelegram();
-
+        var dataForModal = addedDataModal();
+        var dataForModalWithTelegram = addedDataModalWithTelegram();
 
 
         $('#modalDataTable').on('show.bs.modal', function (e) {
-            
-
             if (contactType === 'Телеграм') {
                 $('.modal-body-dataTable').append(dataForModalWithTelegram);
             } else {
                 $('.modal-body-dataTable').append(dataForModal);
             }
-            
-            $('.btn-addDataTable').on('click', function(e) {
-                // table.row('.selected').data().name = $('.modal-body-dataTable input[name=name]').val();
-                console.log(table.row('.selected').data().name)
-            });
         });
 
-      
+        $('.btn-addDataTable').on('click', function (e) {
+            row.name = $('.modal-body-dataTable #name').val();
+            console.log(row.name);
+            $('#modalDataTable').modal('hide');
+        });
         
-        table.draw()
-
         $('#modalDataTable').modal('show');
 
         $('#modalDataTable').on('hidden.bs.modal', function (e) {
             $('.modal-body-dataTable').empty();
             dataForModal = '';
             dataForModalWithTelegram = '';
+            table.clear().draw();
+            table.rows.add(tableData);
+            table.columns.adjust().draw();
         });
-        
     });
 
+
+
+
+
+
+
+
+
+
+
+
+
 });
+
