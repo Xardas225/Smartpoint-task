@@ -416,3 +416,31 @@ label.error {
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
     border-right: none !important;
 }
+
+.btn-addDataTable {
+    background-color: #f76c80 !important;
+    border: #f76c80 !important;
+    box-shadow: none !important;
+    padding: .45rem;
+    border-radius: .2rem;
+}
+
+.btnChangeDataTable {
+    position: relative;
+}
+
+.btnChangeDataTable:focus {
+    box-shadow:  none !important;
+    border: none !important;
+}
+
+.btnChangeDataTable::before {
+    position: absolute;
+    content: '';
+    background-image: url(../images/pen-solid.svg);
+    background-size: 15px;
+    width: 15px;
+    height: 15px;
+    top: 0;
+    bottom: 0;
+}

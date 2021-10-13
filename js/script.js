@@ -329,7 +329,7 @@ $('document').ready(function () {
                 { data: 'verification' },
                 {
                     data: function () {
-                        return "<button type='button' class='btn btnChangeDataTable btn-md' data-toggle='modal' data-target='#modalDataTable'> Edit </button>"
+                        return "<button type='button' class='btn btnChangeDataTable btn-md' data-toggle='modal' data-target='#modalDataTable'></button>"
                     }
                 }
             ],
@@ -339,11 +339,14 @@ $('document').ready(function () {
 
 
     // Привязка выбранного события к строке
-    $('#table').on('click', 'tr', '.btnChangeDataTable', function (e) {
-
+    $('#table').on('click', '.btnChangeDataTable', 'tr', function (e) {
+       
         var name = table.row(e.target.parentElement).data().name;
         var desc = table.row(e.target.parentElement).data().description;
         var address = table.row(e.target.parentElement).data().address;
+        var contactType = table.row(e.target.parentElement).data().contactType;
+
+        $(e.target.parentElement.parentElement).addClass('selected');
 
         function addedDataModal() {
             return `<div class="mb-3"> 
@@ -359,84 +362,50 @@ $('document').ready(function () {
                         <input name="address" type="text" value="${address}" class="form-control" id="address">
                     </div>`
         }
+        function addedDataModalWithTelegram() {
+            return `<div class="mb-3"> 
+                        <label for="name" class="form-label"> Укажите название </label>
+                        <input name="name" type="text" value="${name}" class="form-control" id="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Описание</label>
+                        <input name="description" type="text" value="${desc}" class="form-control" id="description">
+                    </div>`
+        }
+
 
         let dataForModal = addedDataModal();
-
-        // $('.modal-body-dataTable').append(dataForModal).html();
+        let dataForModalWithTelegram = addedDataModalWithTelegram();
 
 
 
         $('#modalDataTable').on('show.bs.modal', function (e) {
-            $('.modal-body-dataTable').append(dataForModal).html();
+            
+
+            if (contactType === 'Телеграм') {
+                $('.modal-body-dataTable').append(dataForModalWithTelegram);
+            } else {
+                $('.modal-body-dataTable').append(dataForModal);
+            }
+            
+            $('.btn-addDataTable').on('click', function(e) {
+                // table.row('.selected').data().name = $('.modal-body-dataTable input[name=name]').val();
+                console.log(table.row('.selected').data().name)
+            });
         });
+
+      
+        
+        table.draw()
+
         $('#modalDataTable').modal('show');
 
-        $('#modalDataTable').on('click', '.btn-cancelDataTable', function (e) {
-            $('#modalDataTable .modal-body-dataTable').empty()
+        $('#modalDataTable').on('hidden.bs.modal', function (e) {
+            $('.modal-body-dataTable').empty();
+            dataForModal = '';
+            dataForModalWithTelegram = '';
         });
-
-        table.row(e.target.parentElement).data().name = $('.modal-body-dataTable input[name=name]').val();
-        table.draw();
+        
     });
-
-
-
-    // '<div class="mb-3">' +
-    // ' <label for="name" class="form-label"> Укажите название </label>' +
-    // '<input name="name" type="text" value="${}" class="form-control" id="name" aria-describedby="siteLink">'
-
-    // var modalDataTable = new bootstrap.Modal(document.querySelector('#modalDataTable'))
-
-
-    // // Привязка события клика к кнопке
-    // $(".table__button").click(function (e) {
-    //     e.preventDefault();
-
-
-    //     console.log("Привязка события клика к кнопке");
-    //     var name = table.row('.selected').data().name;
-    //     var desc = table.row('.selected').data().description;
-
-    //     modalDataTable.show();
-
-    //     let bodyModalDataTable = document.querySelector('.modal-body-dataTable');
-    //     // e.target.parentElement.parentElement.classList.add('selected');
-
-    //     (function AddinputDataTable() {
-    //         let labelInputName = document.createElement('label')
-    //         let inputName = document.createElement('input');
-    //         let labelInputDesc = document.createElement('label')
-    //         let inputDesc = document.createElement('input');
-
-    //         if (bodyModalDataTable.hasAttributes)
-
-    //             labelInputName.textContent = 'Укажите название';
-    //         inputName.value = name;
-    //         labelInputDesc.textContent = 'Описание'
-    //         inputDesc.value = desc;
-
-    //         bodyModalDataTable.appendChild(labelInputName);
-    //         bodyModalDataTable.appendChild(inputName);
-    //         bodyModalDataTable.appendChild(labelInputDesc);
-    //         bodyModalDataTable.appendChild(inputDesc);
-
-    //         inputName.classList.add("form-control", "mb-3", "name");
-    //         inputDesc.classList.add("form-control", "mb-3", "desc");
-
-
-    //     })();
-
-    //     $('.btn-addDataTable').click(function (e) {
-    //         e.preventDefault();
-
-    //         modalDataTable.hide();
-
-
-    //     })
-
-
-    // });
-
-
 
 });
