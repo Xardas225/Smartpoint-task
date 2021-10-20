@@ -48,8 +48,9 @@
         <div class="accordion accordion-leftMenu accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingOne">
-                    <button class="accordion-button collapsed button-playgrounds" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    <button class="accordion-button collapsed button-playgrounds" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                        aria-controls="flush-collapseOne">
                         Площадки
                     </button>
                 </h2>
@@ -203,47 +204,48 @@
                                             <h3 class="card-system__title">
                                                 Системные
                                             </h3>
-                                            <div class="card-system__form-name mb-3">
-                                                <label for="name"
-                                                    class="card-system__form-name__label form-label">Название</label>
-                                                <input name="name" type="text"
-                                                    class="card-system__form-name__form form-control" id="systemName">
-                                            </div>
-                                            <div class="card-system__form-timezone mb-3">
-                                                <label for="timezone">Часовой пояс</label>
-                                                <select name="timezone" id="timezone"
-                                                    class="form-select card-system__form-timezone__select"
-                                                    aria-label="Default select example">
-                                                    <option selected></option>
-                                                    <option value="1">+0 - Москва</option>
-                                                    <option value="2">+1 - Калининград</option>
-                                                    <option value="3">+2 - Екатеринбург</option>
-                                                    <option value="4">+3 - Омск</option>
-                                                    <option value="5" selected>+4 - Самара</option>
-                                                </select>
-                                            </div>
-                                            <div class="card-system__form-api mb-3">
-                                                <label for="key">Ключ АПИ</label>
-                                                <div class="input-group">
-                                                    <input name="key" id="apiKey"
-                                                        class="form-control card-system__form-api__input" type="text"
-                                                        placeholder="" aria-label="readonly input" disabled>
-                                                    <button class="card-system__form-api__btn-dis" type="button">
-                                                        <img class="btn-dis__icon" src="./images/unlock.svg"
-                                                            alt="unblock">
-                                                    </button>
-                                                    <button class="card-system__form-api__btn-random" type="button">
-                                                        <img class="btn-random__icon" src="./images/magic.svg"
-                                                            alt="random">
-                                                    </button>
+                                            <div class="card-system__content">
+                                                <div class="mb-3" style="display: none;">
+                                                    <label></label>
+                                                    <input type="hidden" class="form-control">
                                                 </div>
-                                            </div>
-                                            <div class="card-system__form-phones mb-3">
-                                                <label for="phones">Телефоны</label>
-                                                <input name="phones" data-role="tagsinput" value="89223149134"
-                                                    type="text" class="card-system__form-phones__form form-control"
-                                                    id="phones">
-                                            </div>
+                                                <!-- <div class="mb-3">
+                                                    <label for="timezone">Часовой пояс</label>
+                                                    <select name="timezone" id="timezone"
+                                                        class="form-select card-system__form-timezone__select"
+                                                        aria-label="Default select example">
+                                                        <option selected></option>
+                                                        <option value="1">+0 - Москва</option>
+                                                        <option value="2">+1 - Калининград</option>
+                                                        <option value="3">+2 - Екатеринбург</option>
+                                                        <option value="4">+3 - Омск</option>
+                                                        <option value="5" selected>+4 - Самара</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="key">Ключ АПИ</label>
+                                                    <div class="input-group">
+                                                        <input name="key" id="apiKey"
+                                                            class="form-control card-system__form-api__input"
+                                                            type="text" placeholder="" aria-label="readonly input"
+                                                            disabled>
+                                                        <button class="card-system__form-api__btn-dis" type="button">
+                                                            <img class="btn-dis__icon" src="./images/unlock.svg"
+                                                                alt="unblock">
+                                                        </button>
+                                                        <button class="card-system__form-api__btn-random" type="button">
+                                                            <img class="btn-random__icon" src="./images/magic.svg"
+                                                                alt="random">
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="phones">Телефоны</label>
+                                                    <input name="phones" data-role="tagsinput" value="89223149134"
+                                                        type="text" class="card-system__form-phones__form form-control"
+                                                        id="phones">
+                                                </div> -->
+                                            </div>  
                                         </div>
 
                                         <!-- Расписание -->
@@ -614,7 +616,8 @@
                                                         <div class="modal-footer">
                                                             <button type="submit"
                                                                 class="btn-addSite btn-primary">Принять</button>
-                                                            <button type="submit" class="btn btn-closeDataTableModal btn-secondary"
+                                                            <button type="submit"
+                                                                class="btn btn-closeDataTableModal btn-secondary"
                                                                 data-bs-dismiss="modal">Отмена</button>
                                                         </div>
                                                     </div>
@@ -697,7 +700,7 @@
                                 <div class="modal-body modal-body-dataTable">
 
                                 </div>
-                                    
+
                                 <div class="modal-footer">
                                     <button type="submit" class="btn-addDataTable btn-primary">Принять</button>
                                     <button type="submit" class="btn btn-cancelDataTable btn-secondary"
