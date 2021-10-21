@@ -1,9 +1,5 @@
 $('document').ready(function () {
 
-
-
-
-
     // Разблокировать поле генерации АПИ ключа
     $('.card-system__form-api__btn-dis').on('click', function () {
         $('#apiKey').removeAttr('disabled');
@@ -157,54 +153,222 @@ $('document').ready(function () {
 })
 
 
+// data.map(elem => { 
+//     let { element, elementClass, type, name, label, attribute } = elem
+//     return elem
+// })
+
 let cardSystem = document.querySelector('.card-system__content')
-let cloneElement = document.querySelector('.card-system__content > .mb-3').cloneNode(true)
 
 
-class Form {
+let elementConfig = [
+    {
+        'element': 'input',
+        'elementClass': 'form-control',
+        'type': 'text',
+        'name': 'name',
+        'label': 'Название',
+    },
+    {
+        'element': 'select',
+        'elementClass': 'form-select',
+        'name': 'timezone',
+        'label': 'Часовой пояс',
+        'options': [
+            ['Москва', 'Moscow', false, false]
+        ]
+    },
+    {
+        'element': 'input',
+        'elementClass': 'form-control',
+        'type': 'text',
+        'name': 'key',
+        'label': 'Ключ АПИ',
+        'attribute': 'disabled'
+    },
+    {
+        'element': 'input',
+        'elementClass': 'form-control',
+        'type': 'text',
+        'name': 'phones',
+        'label': 'Телефоны'
+    },
 
-    constructor(type = text, name, labelName, value = '') {
+]
+
+class FormBlock {
+
+    /**
+     * _element - variety of form 
+     * _elementClass - class variety of form
+     * _type - type of element
+     * _name - name of element
+     * _value - value of element
+     * _label - create label 
+     * _attribute - add attribute
+     * appendToDocument - method which the append FormDblock in Document
+     * returnForm - method which return FormBlock
+     */
+
+    /**
+     * constructor
+     */
+    constructor() {
+        this._element = document.createElement('input')
+        this._type = 'text'
+    }
+
+    /**
+     * method set element
+     */
+    set element(element) {
+        if (typeof element == 'string' && element.trim() !== '') {
+            this._element = document.createElement(element)
+        }
+
+        return false
+    }
+
+    /**
+     * method get element
+     */
+    get element() {
+        return this._element
+    }
+
+    /**
+     * method set elementClass
+     */
+    set elementClass(elementClass) {
+        this._elementClass = elementClass
+        if (elementClass == '' || elementClass == false || elementClass == null || elementClass == undefined) {
+            return false
+        }
+
+        this._element.classList.add(elementClass)
+    }
+
+
+    /**
+     * method set value
+     */
+    set value(value) {
+        if (value.trim() !== '') {
+            this._element = document.createElement(element)
+        }
+
+        return false
+    }
+
+
+    /**
+     * method set type
+     */
+    set type(type) {
         this._type = type
-        this._name = name
-        this._value = value
-        this._labelName = labelName
+        if (type == '' || type == false || type == null || type == undefined) {
+            return false
+        }
+
+        this._element.type = this._type
     }
 
-    setType(elem) {
-        this._type = elem
+    /**
+     * method set label
+     */
+    set label(labelText) {
+        this._label = document.createElement('label')
+        if (labelText == '' || labelText == false || labelText == null || labelText == undefined) {
+            return false
+        } else if (labelText) {
+            this._label.innerHTML = labelText
+        }
     }
 
-    setName(elem) {
-        this._name = elem
+    /**
+     * method set element
+     */
+    attribute(attribute) {
+        if(!this._element.hasAttribute(attribute)) {
+            this._element.setAttribute(attribute, true)
+        } 
+
+        return false
     }
 
-    setValue(elem) {
-        this._value = elem
+    /**
+     * method appendFormToDocument
+     */
+    appendFormToDocument(DOMElement) {
+        let div = document.createElement('div')
+        div.classList.add('mb-3')
+
+        if (this._element && this._label) {
+            div.append(this._label)
+            div.append(this._element)
+        } else if (this._element) {
+            div.append(this._element)
+        } else {
+            return false
+        }
+        DOMElement.append(div)
     }
 
-    setLabelName(elem) {
-        this._labelName = elem
+    /**
+     * method returnForm
+     */
+    returnForm() {
+        let div = document.createElement('div')
+        div.classList.add('mb-3')
+
+        if (this._element && this._label) {
+            div.append(this._label)
+            div.append(this._element)
+            return div
+        } else if (this._element) {
+            div.append(this._element)
+            return div
+        } else {
+            return false
+        }
     }
 
 }
 
-class Input extends Form {
+class SelectBlock extends FormBlock {
 
-    addedHtml(clone) {
-        clone.style.display = 'block'
-        clone.querySelector('input').name = this._name
-        clone.querySelector('input').type = this._type
-        clone.querySelector('input').value = this._value
+    constructor(...arg) {
+        super(...arg)
 
-        clone.querySelector('label').innerHTML = this._labelName
-
-        return clone
     }
 
-    disabled(clone) {
-        clone.querySelector('input').disabled = true
+    addedOptions(options) {
+
     }
 }
 
-let inputName = new Input('text','name','Название').addedHtml(cloneElement)
-cardSystem.append(inputName)
+
+for (let i = 0; i < elementConfig.length; i++) {
+    let configName = elementConfig[i].name
+
+    configName = new FormBlock()
+
+    configName.element = elementConfig[i].element
+    configName.type = elementConfig[i].type
+    configName.elementClass = elementConfig[i].elementClass
+    configName.name = elementConfig[i].name
+    configName.label = elementConfig[i].label
+
+    if(elementConfig[i].attribute) {
+        configName.attribute(elementConfig[i].attribute)
+    }
+
+    configName.appendFormToDocument(cardSystem)
+}
+
+
+
+
+
+
+
