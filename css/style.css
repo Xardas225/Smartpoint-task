@@ -138,9 +138,9 @@ input:focus, select:focus{
     color: #a29c9c;
     margin-bottom: 1rem;
 }
-.btn-activeKey,
+.btn-active,
 .btn-random{
-    border: 0.05rem solid #f5f5f5;
+    border: 0.05rem solid #f5f5f5 ;
     background-color: #fff;
     border-radius: .5rem;
     padding: 0 .9rem;
@@ -199,14 +199,18 @@ label{
     border-radius: .5rem;
     background-color: #fff;
 }
-img.btn-addTime-icon{
+img.addTime-image{
     display: block;
     width: 1rem;
 }
-
-
-.addTime{
-    display: none;
+.timetable-element {
+    display: flex;
+    flex-direction: row;
+}
+.from,
+.to{
+    display: flex;  
+    flex-direction: row;
 }
 
 .tab-content {
@@ -348,7 +352,9 @@ input[type="time"]{
 .hide {
     display: block;
 }
-
+.fromExtra, .toExtra {
+    display: none !important;
+}
 .pointer-auto {
     pointer-events: auto;
 }
@@ -447,4 +453,8 @@ label.error {
     height: 15px;
     top: 0;
     bottom: 0;
+}
+
+.show {
+    display: block !important;
 }

@@ -7,15 +7,7 @@ $('document').ready(function () {
 
 
 
-    // Реализация добавления на страницу интервала времени - элемент Расписание
-    let buttonsAddTime = document.querySelectorAll('.btn-addTime');
 
-    buttonsAddTime.forEach(buttonAddTime => buttonAddTime.addEventListener('click', addTime));
-
-    function addTime(event) {
-        let newTime = event.target.parentElement.querySelector('.addTime');
-        newTime.classList.toggle('hide');
-    };
 
 
     // Поведение чекбокса - элемент Расписание
@@ -172,7 +164,7 @@ let generalElements = [
         'elementClass': ['btn', 'btn-active'],
         'type': 'button',
         'name': 'active',
-        'attribute': ['src', './images/unlock.svg'],
+        'image': ['src', './images/unlock.svg'],
         'parentElement': 'input-group__key'
     },
     {
@@ -180,7 +172,7 @@ let generalElements = [
         'elementClass': ['btn', 'btn-random'],
         'type': 'button',
         'name': 'random',
-        'attribute': ['src', './images/magic.svg'],
+        'image': ['src', './images/magic.svg'],
         'parentElement': 'input-group__key'
     },
     {
@@ -197,10 +189,11 @@ let generalElements = [
 
 let timetableElements = [
     {
-        'element': 'checkbox',
+        'element': 'input',
         'elementClass': ['checkbox'],
+        'type': 'checkbox',
         'name': 'checkbox',
-        'attribute': ['checked', 'true']
+        'attribute': ['checked', 'true'],
     },
     {
         'element': 'input',
@@ -216,14 +209,29 @@ let timetableElements = [
         'name': 'to',
         'label': 'по',
     },
+    
     {
         'element': 'button',
         'elementClass': ['btn', 'btn-addTime'],
         'type': 'button',
         'name': 'addTime',
-        'attribute': ['src', './images/unlock.svg'],
-        'parentElement': 'input-group__'
-    }
+        'image': ['src', './images/clock.svg'],
+    },
+    {
+        'element': 'input',
+        'elementClass': ['form-control', 'form-control__from', 'hide'],
+        'type': 'time',
+        'name': 'fromExtra',
+        'label': 'с',
+    },
+    {
+        'element': 'input',
+        'elementClass': ['form-control', 'form-control__to', 'hide'],
+        'type': 'time',
+        'name': 'toExtra',
+        'label': 'по',
+    },
+    
 ]
 
 
@@ -334,7 +342,7 @@ class FormBlock {
     /**
      * method set element
      */
-    attribute(attribute) {
+    set attribute(attribute) {
         if (!this._element.hasAttribute(attribute) && attribute) {
             this._element.setAttribute(...attribute)
         }
@@ -388,51 +396,33 @@ class FormBlock {
      * method appendFormGroupToDocument
      */
     appendFormGroupToDocument(data, DOMElement) {
-        for (let i = 0; i < data.length; i++) {
-            let elementData = data[i].name
 
-            switch (data[i].element) {
-                case 'select':
-                    elementData = new SelectBlock();
+        for (let element of data) {
 
-                    elementData.element = data[i].element;
-                    elementData.addedOptions(data[i].options);
-                    elementData.type = data[i].type
-                    elementData.elementClass = data[i].elementClass
-                    elementData.name = data[i].name
-                    elementData.label = data[i].label
-                    elementData.attribute(data[i].attribute)
-
-                    elementData.appendFormToDocument(DOMElement)
-                    break;
-                case 'button':
-                    elementData = new ButtonBlock();
-
-                    elementData.element = data[i].element;
-                    elementData.type = data[i].type
-                    elementData.elementClass = data[i].elementClass
-                    elementData.name = data[i].name
-                    elementData.label = data[i].label
-                    elementData.createImage(data[i].attribute)
-
-                    elementData.appendButtonToElement
-                    (document.querySelector(`.${data[i].parentElement}`))
-                    break;
-                default:
-                    elementData = new FormBlock();
-                    elementData.element = data[i].element;
-                    elementData.type = data[i].type
-                    elementData.elementClass = data[i].elementClass
-                    elementData.name = data[i].name
-                    elementData.label = data[i].label
-                    elementData.attribute(data[i].attribute)
-
-                    elementData.appendFormToDocument(DOMElement)
+            let keys = Object.keys(element)
+            let values = Object.values(element)
+            // Проверяем на select
+            if (element.element == 'select') {
+                let elementData = new SelectBlock()
+                for (let i = 0; i < keys.length; i++) {
+                    elementData[keys[i]] = values[i]
+                }
+                elementData.appendFormToDocument(DOMElement)
+            } else if (element.element == 'button') {
+                let elementData = new ButtonBlock()
+                for (let i = 0; i < keys.length; i++) {
+                    elementData[keys[i]] = values[i]
+                }
+                elementData.appendFormToDocument(document.querySelector(`.${element.parentElement}`))
+            } else {
+                let elementData = new FormBlock()
+                for (let i = 0; i < keys.length; i++) {
+                    elementData[keys[i]] = values[i]
+                }
+                elementData.appendFormToDocument(DOMElement)
             }
 
         }
-
-
     }
 
 }
@@ -442,8 +432,7 @@ class FormBlock {
 
 class SelectBlock extends FormBlock {
 
-
-    addedOptions(options) {
+    set options(options) {
         options.forEach(el => {
             let option = document.createElement('option')
             option.text = el[0].trim()
@@ -455,39 +444,58 @@ class SelectBlock extends FormBlock {
 
 class ButtonBlock extends FormBlock {
 
-    createImage(attribute) {
+    set image(attributeImage) {
         let image = document.createElement('img')
         image.classList.add(`${this._name}-image`)
-        image.setAttribute(...attribute)
+        image.setAttribute(...attributeImage)
 
         this._element.append(image)
-    }
-
-    appendButtonToElement(DOMElement) {
-        super.appendFormToDocument(DOMElement)
     }
 
 }
 
 class TimetableBlock extends ButtonBlock {
 
+    prependCheckbox(DOMElement) {
+        let div = document.createElement('div')
+        div.classList.add(`${this.name}`)
+
+        div.append(this.element)
+
+        DOMElement.prepend(div)
+    }
+
+
     appendTimetableFormGroupToElement(data, DOMElement) {
-        for (let i = 0; i < data.length; i++) {
+        for (let i = 0; i < 7; i++) {
+            let div = document.createElement('div')
+            div.classList.add('timetable-element')
 
-            let elementData = data[i].name
-
-            elementData = new FormBlock()
-
-            elementData.element = data[i].element;
-            elementData.type = data[i].type
-            elementData.elementClass = data[i].elementClass
-            elementData.name = data[i].name
-            elementData.label = data[i].label
-
-            elementData.appendFormToDocument(DOMElement)
-
+            for (let element of data) {
+                let keys = Object.keys(element)
+                let values = Object.values(element)
+                if (element.element == 'input' && element.type == 'checkbox') {
+                    let elementData = new TimetableBlock()
+                    for (let i = 0; i < keys.length; i++) {
+                        elementData[keys[i]] = values[i]
+                    }
+                    elementData.appendFormToDocument(div)
+                } else if (element.element == 'button') {
+                    let elementData = new ButtonBlock()
+                    for (let i = 0; i < keys.length; i++) {
+                        elementData[keys[i]] = values[i]
+                    }
+                    elementData.appendFormToDocument(div)
+                } else {
+                    let elementData = new FormBlock()
+                    for (let i = 0; i < keys.length; i++) {
+                        elementData[keys[i]] = values[i]
+                    }
+                    elementData.appendFormToDocument(div)
+                }
+                DOMElement.append(div)
+            }
         }
-
     }
 
 }
@@ -522,3 +530,15 @@ $('.btn-random').on('click', function () {
 });
 
 
+// Реализация добавления на страницу интервала времени - элемент Расписание
+let buttonsAddTime = document.querySelectorAll('.btn-addTime');
+
+buttonsAddTime.forEach(buttonAddTime => buttonAddTime.addEventListener('click', addTime));
+
+function addTime(event) {
+    let eventElement = event.target.parentElement.parentElement.parentElement
+    eventElement.querySelector('.fromExtra').classList.toggle('show')
+    eventElement.querySelector('.toExtra').classList.toggle('show')
+    eventElement.querySelector('.fromExtra').classList.toggle('hide')
+    eventElement.querySelector('.toExtra').classList.toggle('hide')
+};
