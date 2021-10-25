@@ -145,19 +145,19 @@ input:focus, select:focus{
     border-radius: .5rem;
     padding: 0 .9rem;
 }
-img.btn-dis__icon,
-img.btn-random__icon {
+img.active-image,
+img.random-image {
     display: block;
     width: 1rem;
 }
-.phones {
+.input-group__phones {
     display: flex;
     flex-direction: column;
 }
-/* .key {
+.input-group__key  {
     display: flex;
     flex-direction: row;
-} */
+}
 label{
     font-weight: 500;
     font-size: .894rem;

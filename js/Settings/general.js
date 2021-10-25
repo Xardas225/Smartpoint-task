@@ -1,25 +1,10 @@
 $('document').ready(function () {
 
-    // Разблокировать поле генерации АПИ ключа
-    $('.card-system__form-api__btn-dis').on('click', function () {
-        $('#apiKey').removeAttr('disabled');
-    });
 
-    // Функция для рандома Апи-ключа
-    function str_rand(num) {
-        var result = '';
-        var words = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
-        var max_position = words.length - 1;
-        for (i = 0; i < num; ++i) {
-            position = Math.floor(Math.random() * max_position);
-            result = result + words.substring(position, position + 1);
-        }
-        return result;
-    }
 
-    $('.card-system__form-api__btn-random').on('click', function () {
-        $('#apiKey').val(str_rand(30));
-    });
+
+
+
 
 
     // Реализация добавления на страницу интервала времени - элемент Расписание
@@ -153,7 +138,7 @@ $('document').ready(function () {
 
 
 
-let elementConfig = [
+let generalElements = [
     {
         'element': 'input',
         'elementClass': ['form-control', 'name'],
@@ -168,10 +153,10 @@ let elementConfig = [
         'label': 'Часовой пояс',
         'attribute': ['aria-label', 'timezone'],
         'options': [
-            ['Москва', 'Moscow'],
-            ['Волгоград  ', 'Volgograd  '],
-            ['Екатеринбург', 'Ekaterinburg'],
-            ['Пермь', 'Perm'],
+            ['Москва', '1'],
+            ['Волгоград  ', '2'],
+            ['Екатеринбург', '3'],
+            ['Пермь', '4'],
         ]
     },
     {
@@ -185,14 +170,18 @@ let elementConfig = [
     {
         'element': 'button',
         'elementClass': ['btn', 'btn-active'],
+        'type': 'button',
         'name': 'active',
-        'attribute': ['src', './images/unlock.svg']
+        'attribute': ['src', './images/unlock.svg'],
+        'parentElement': 'input-group__key'
     },
     {
         'element': 'button',
         'elementClass': ['btn', 'btn-random'],
+        'type': 'button',
         'name': 'random',
-        'attribute': ['src', './images/unlock.svg']
+        'attribute': ['src', './images/magic.svg'],
+        'parentElement': 'input-group__key'
     },
     {
         'element': 'input',
@@ -203,9 +192,39 @@ let elementConfig = [
         'attribute': ['data-role', 'tagsinput']
     },
 
-
 ]
 
+
+let timetableElements = [
+    {
+        'element': 'checkbox',
+        'elementClass': ['checkbox'],
+        'name': 'checkbox',
+        'attribute': ['checked', 'true']
+    },
+    {
+        'element': 'input',
+        'elementClass': ['form-control', 'form-control__from'],
+        'type': 'time',
+        'name': 'from',
+        'label': 'с',
+    },
+    {
+        'element': 'input',
+        'elementClass': ['form-control', 'form-control__to'],
+        'type': 'time',
+        'name': 'to',
+        'label': 'по',
+    },
+    {
+        'element': 'button',
+        'elementClass': ['btn', 'btn-addTime'],
+        'type': 'button',
+        'name': 'addTime',
+        'attribute': ['src', './images/unlock.svg'],
+        'parentElement': 'input-group__'
+    }
+]
 
 
 class FormBlock {
@@ -279,8 +298,9 @@ class FormBlock {
      * method set value
      */
     set value(value) {
+        this._value = value
         if (value.trim() !== '') {
-            this._element = document.createElement(element)
+            this._element.value(this._value)
         }
 
         return false
@@ -327,16 +347,21 @@ class FormBlock {
      */
     appendFormToDocument(DOMElement) {
         let div = document.createElement('div')
-        div.classList.add('mb-3', `${this._name}`)
+        let divGroup = document.createElement('div')
+
+        div.classList.add(`${this._name}`)
+        divGroup.classList.add('input-group', `input-group__${this._name}`)
+
 
         if (this._element && this._label) {
             div.append(this._label)
-            div.append(this._element)
+            divGroup.append(this._element)
         } else if (this._element) {
-            div.append(this._element)
+            divGroup.append(this._element)
         } else {
             return false
         }
+        div.append(divGroup)
         DOMElement.append(div)
     }
 
@@ -369,7 +394,7 @@ class FormBlock {
             switch (data[i].element) {
                 case 'select':
                     elementData = new SelectBlock();
-                    
+
                     elementData.element = data[i].element;
                     elementData.addedOptions(data[i].options);
                     elementData.type = data[i].type
@@ -388,9 +413,10 @@ class FormBlock {
                     elementData.elementClass = data[i].elementClass
                     elementData.name = data[i].name
                     elementData.label = data[i].label
-                    elementData.attribute(data[i].attribute)
+                    elementData.createImage(data[i].attribute)
 
-                    elementData.appendButtonToElement(DOMElement)
+                    elementData.appendButtonToElement
+                    (document.querySelector(`.${data[i].parentElement}`))
                     break;
                 default:
                     elementData = new FormBlock();
@@ -416,6 +442,7 @@ class FormBlock {
 
 class SelectBlock extends FormBlock {
 
+
     addedOptions(options) {
         options.forEach(el => {
             let option = document.createElement('option')
@@ -428,21 +455,70 @@ class SelectBlock extends FormBlock {
 
 class ButtonBlock extends FormBlock {
 
+    createImage(attribute) {
+        let image = document.createElement('img')
+        image.classList.add(`${this._name}-image`)
+        image.setAttribute(...attribute)
+
+        this._element.append(image)
+    }
+
     appendButtonToElement(DOMElement) {
-        let div = document.createElement('div')
-        div.classList.add(`${this._name}`)
-        div.append(this._element)
-        DOMElement.append(div)
+        super.appendFormToDocument(DOMElement)
     }
 
 }
 
+class TimetableBlock extends ButtonBlock {
+
+    appendTimetableFormGroupToElement(data, DOMElement) {
+        for (let i = 0; i < data.length; i++) {
+
+            let elementData = data[i].name
+
+            elementData = new FormBlock()
+
+            elementData.element = data[i].element;
+            elementData.type = data[i].type
+            elementData.elementClass = data[i].elementClass
+            elementData.name = data[i].name
+            elementData.label = data[i].label
+
+            elementData.appendFormToDocument(DOMElement)
+
+        }
+
+    }
+
+}
 
 let GeneralForm = new FormBlock()
-GeneralForm.appendFormGroupToDocument(elementConfig, document.querySelector('.card-system__content'))
+GeneralForm.appendFormGroupToDocument(generalElements, document.querySelector('.card-system__content'))
+
+let timetableForm = new TimetableBlock()
+timetableForm.appendTimetableFormGroupToElement(timetableElements, document.querySelector('.timetable'))
 
 
+// Разблокировать поле генерации АПИ ключа
+$('.btn-active').on('click', function () {
+    $('.key').removeAttr('disabled');
+});
 
+// Функция для рандома Апи-ключа
+function str_rand(num) {
+    var result = '';
+    var words = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+    var max_position = words.length - 1;
+    for (i = 0; i < num; ++i) {
+        position = Math.floor(Math.random() * max_position);
+        result = result + words.substring(position, position + 1);
+    }
+    return result;
+}
 
+// Рандом значение АПИ-ключа
+$('.btn-random').on('click', function () {
+    $('.key').val(str_rand(30));
+});
 
 
