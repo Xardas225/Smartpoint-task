@@ -1,15 +1,5 @@
 $('document').ready(function () {
 
-
-
-
-
-
-
-
-
-
-
     // Поведение чекбокса - элемент Расписание
     let checkboxsTime = document.querySelectorAll('.timetable input[type=checkbox]');
 
@@ -26,104 +16,79 @@ $('document').ready(function () {
         };
     };
 
-    // // Формирование объекта экспорта данных - страница Общие
-    // const generalForm = document.querySelector('#generalForm');
+    // Формирование объекта экспорта данных - страница Общие
+    const generalForm = document.querySelector('#generalForm');
 
-    // $("#generalForm").validate({
-    //     submitHandler: function (form, event) {
+    $("#generalForm").validate({
+        submitHandler: function (form, event) {
+            event.preventDefault();
 
-    //         event.preventDefault();
+            let workingTime = (function () {
+                let formElements = document.forms.generalForm.elements
+                let map = new Map()
 
-    //         let name = event.target.name.value
-    //         timezone = event.target.timezone.value
-    //         key = event.target.key.value
-    //         phones = event.target.phones.value.split(',')
-    //         let data = {
-    //             "name": name,
-    //             "timezone": timezone,
-    //             "key": key,
-    //             "phones": phones,
-    //             "Working Time": {
-    //                 "0": [
-    //                     {
-    //                         "from:": event.target.from[0].value,
-    //                         "to": event.target.to[0].value
-    //                     }
-    //                 ],
-    //                 "1": [
-    //                     {
-    //                         "from:": event.target.from[1].value,
-    //                         "to": event.target.to[1].value
-    //                     }
-    //                 ],
-    //                 "2": [
-    //                     {
-    //                         "from:": event.target.from[2].value,
-    //                         "to": event.target.to[2].value
-    //                     }
-    //                 ],
-    //                 "3": [
-    //                     {
-    //                         "from:": event.target.from[3].value,
-    //                         "to": event.target.to[3].value
-    //                     }
-    //                 ],
-    //                 "4": [
-    //                     {
-    //                         "from:": event.target.from[4].value,
-    //                         "to": event.target.to[4].value
-    //                     }
-    //                 ],
-    //                 "5": [
-    //                     {
-    //                         "from:": event.target.from[5].value,
-    //                         "to": event.target.to[5].value
-    //                     }
-    //                 ],
-    //                 "6": [
-    //                     {
-    //                         "from:": event.target.from[6].value,
-    //                         "to": event.target.to[6].value
-    //                     }
-    //                 ],
-    //             }
+                for (let i = 0; i < [...formElements.from].length; i++) {
+                    map.set(i, [
+                        {
+                            'from': [...formElements.from][i].value,
+                            'to': [...formElements.to][i].value,
+                        }
+                    ])
+                }
 
-    //         };
-    //         console.log(JSON.stringify(data))
-    //     },
-    //     rules: {
-    //         name: {
-    //             required: true,
-    //             minlength: 3
-    //         },
-    //         timezone: {
-    //             required: true
-    //         },
-    //         key: {
-    //             required: true,
-    //             minlength: true
-    //         },
-    //         phones: {
-    //             required: true,
-    //         },
-    //     },
-    //     ignore: [],
-    //     messages: {
-    //         name: {
-    //             required: "Введите имя"
-    //         },
-    //         timezone: {
-    //             required: "Выберите часовой пояс"
-    //         },
-    //         key: {
-    //             required: "Сгенерируйте API-ключ",
-    //             minlength: "Недостаточно символов для создания API-ключа"
-    //         },
-    //         phones: {
-    //             required: "Введите номер телефона"
-    //         }
-    //     }
-    // });
+                let obj = Object.fromEntries(map.entries())
+
+                return obj
+            })()
+
+            let name = event.target.name.value
+            timezone = event.target.timezone.value
+            key = event.target.key.value
+            phones = event.target.phones.value.split(',')
+
+
+            let data = {
+                "name": name,
+                "timezone": timezone,
+                "key": key,
+                "phones": phones,
+                "Working Time": workingTime
+            };
+            console.log(JSON.stringify(data))
+        },
+        rules: {
+            name: {
+                required: true,
+                minlength: 3
+            },
+            timezone: {
+                required: true
+            },
+            key: {
+                required: true,
+                minlength: true
+            },
+            phones: {
+                required: true,
+            },
+        },
+        ignore: [],
+        messages: {
+            name: {
+                required: "Введите имя"
+            },
+            timezone: {
+                required: "Выберите часовой пояс"
+            },
+            key: {
+                required: "Сгенерируйте API-ключ",
+                minlength: "Недостаточно символов для создания API-ключа"
+            },
+            phones: {
+                required: "Введите номер телефона"
+            }
+        }
+    });
 
 })
 
@@ -209,7 +174,7 @@ let timetableElements = [
         'name': 'to',
         'label': 'по',
     },
-    
+
     {
         'element': 'button',
         'elementClass': ['btn', 'btn-addTime'],
@@ -231,7 +196,7 @@ let timetableElements = [
         'name': 'toExtra',
         'label': 'по',
     },
-    
+
 ]
 
 
@@ -542,3 +507,9 @@ function addTime(event) {
     eventElement.querySelector('.fromExtra').classList.toggle('hide')
     eventElement.querySelector('.toExtra').classList.toggle('hide')
 };
+
+
+
+
+
+
