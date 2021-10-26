@@ -17,21 +17,36 @@ $('document').ready(function () {
     };
 
     // Формирование объекта экспорта данных - страница Общие
-    const generalForm = document.querySelector('#generalForm');
 
     $("#generalForm").validate({
         submitHandler: function (form, event) {
             event.preventDefault();
 
-            let workingTime = (function () {
-                let formElements = document.forms.generalForm.elements
-                let map = new Map()
+            let workingTime = (function (formElements, map) {
 
+                
+
+                
                 for (let i = 0; i < [...formElements.from].length; i++) {
+                    
+                    let formValue = [...formElements.from][i].value
+                    let toValue = [...formElements.to][i].value
+                    let checkbox = [...formElements.checkbox][i]
+
+
+                    if(!checkbox.checked) {
+                        continue
+                    }
+                    if(fromValue = '') {
+                        fromValue = null
+                    }
+                    if(toValue = '') {
+                        toValue = null
+                    }
                     map.set(i, [
                         {
-                            'from': [...formElements.from][i].value,
-                            'to': [...formElements.to][i].value,
+                            'from': formValue,
+                            'to': toValue,
                         }
                     ])
                 }
@@ -39,7 +54,7 @@ $('document').ready(function () {
                 let obj = Object.fromEntries(map.entries())
 
                 return obj
-            })()
+            })(document.forms.generalForm.elements, new Map())
 
             let name = event.target.name.value
             timezone = event.target.timezone.value
